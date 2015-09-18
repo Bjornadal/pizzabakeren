@@ -108,3 +108,9 @@ Desktop.ini
 # Gradle Wrapper
 ######################
 !gradle/wrapper/gradle-wrapper.jar
+
+######################
+# Android
+######################
+local.properties
+out/

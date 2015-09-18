@@ -7,34 +7,38 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Valgt pizza"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView1"
+        android:textSize="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="#01 DEN ENKLE"
-        android:id="@+id/tvChosenPizza" />
+        android:id="@+id/tvChosenPizza"
+        android:paddingBottom="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Valgt brus"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:textSize="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Cola"
-        android:id="@+id/tvChosenSoda" />
+        android:id="@+id/tvChosenSoda"
+        android:paddingBottom="10dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send bestilling"
         android:id="@+id/btnSendOrder"
-        android:onClick="sendOrder"/>
+        android:onClick="saveOrder"/>
 
 </LinearLayout>

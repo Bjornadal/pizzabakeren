@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import no.bjornadal.pizzabakeren.service.OrderService;
 import no.nb.pizzabakeren.R;
 import no.bjornadal.pizzabakeren.adapter.PizzaArrayAdapter;
 import no.bjornadal.pizzabakeren.model.Pizza;
@@ -22,7 +23,7 @@ public class SelectPizzaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pizza_list);
 
-        List<Pizza> pizzas = new ArrayList<Pizza>();
+        final List<Pizza> pizzas = new ArrayList<Pizza>();
         pizzas.add(new Pizza(1, "DEN ENKLE", "Ost, tomatsaus – og bare det!", 38));
         pizzas.add(new Pizza(2, "Kvess", "Ost, tomatsaus, skinke og sjampinjong", 51));
         pizzas.add(new Pizza(3, "DRØMMEN" , "Ost, tomatsaus, kjøttdeig og paprika", 51));
@@ -41,6 +42,7 @@ public class SelectPizzaActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OrderService.getInstance().getCurrentOrder().setPizza(pizzas.get(position));
                 Intent intent = new Intent(parent.getContext(), SelectSodaActivity.class);
                 startActivity(intent);
             }

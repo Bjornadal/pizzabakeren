@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import no.bjornadal.pizzabakeren.service.OrderService;
 import no.nb.pizzabakeren.R;
 import no.bjornadal.pizzabakeren.adapter.SodaArrayAdapter;
 import no.bjornadal.pizzabakeren.model.Soda;
@@ -22,7 +23,7 @@ public class SelectSodaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.soda_list);
 
-        List<Soda> sodas = new ArrayList<Soda>();
+        final List<Soda> sodas = new ArrayList<Soda>();
         sodas.add(new Soda("Cola"));
         sodas.add(new Soda("Cola Zero"));
         sodas.add(new Soda("Fanta"));
@@ -36,6 +37,7 @@ public class SelectSodaActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OrderService.getInstance().getCurrentOrder().setSoda(sodas.get(position));
                 Intent intent = new Intent(parent.getContext(), ConfirmActivity.class);
                 startActivity(intent);
             }
