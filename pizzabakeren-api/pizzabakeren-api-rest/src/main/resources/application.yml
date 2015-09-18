@@ -1,0 +1,22 @@
+info:
+  app:
+    name: pizzabakeren-api
+    description: Pizzabakeren API
+
+#endpoints:
+#  restart:
+#    enabled: true
+#  refresh:
+#    enabled: true
+
+server:
+  port: 8080
+
+spring:
+ application:
+  name: pizzabakeren-api
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#      database: pizzabakeren-api
