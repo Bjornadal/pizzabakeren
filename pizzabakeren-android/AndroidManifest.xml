@@ -5,7 +5,7 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="21"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name=".activity.MainActivity"
+        <activity android:name="no.bjornadal.pizzabakeren.activity.MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -13,25 +13,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SelectPizzaActivity"
+            android:name="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity"
             android:label="Velg din pizza"
-            android:parentActivityName=".activity.MainActivity">
+            android:parentActivityName="no.bjornadal.pizzabakeren.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.nb.pizzabakeren.activity.SelectPizzaActivity" />
+                android:value="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity" />
         </activity>
         <activity
-            android:name=".activity.SelectSodaActivity"
+            android:name="no.bjornadal.pizzabakeren.activity.SelectSodaActivity"
             android:label="Velg din brus"
-            android:parentActivityName=".activity.SelectPizzaActivity">
+            android:parentActivityName="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.nb.pizzabakeren.activity.SelectSodaActivity" />
+                android:value="no.bjornadal.pizzabakeren.activity.SelectSodaActivity" />
         </activity>
         <activity
-            android:name=".activity.ConfirmActivity"
+            android:name="no.bjornadal.pizzabakeren.activity.ConfirmActivity"
             android:label="Din bestilling"
-            android:parentActivityName=".activity.SelectSodaActivity">
+            android:parentActivityName="no.bjornadal.pizzabakeren.activity.SelectSodaActivity">
             <meta-data
                 android:name="andoird.support.PARENT_ACTIVITY"
                 android:value="no.nb.pizzabakeren.activity.ConfirmActivity" />

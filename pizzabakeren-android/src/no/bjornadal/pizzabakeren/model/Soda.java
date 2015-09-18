@@ -1,4 +1,4 @@
-package no.nb.pizzabakeren.model;
+package no.bjornadal.pizzabakeren.model;
 
 /**
  * Created by andreasb on 11.09.15.

@@ -1,4 +1,4 @@
-package no.nb.pizzabakeren.activity;
+package no.bjornadal.pizzabakeren.activity;
 
 import android.app.Activity;
 import android.content.Intent;

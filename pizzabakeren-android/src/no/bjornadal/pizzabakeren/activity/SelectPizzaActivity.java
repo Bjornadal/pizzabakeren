@@ -1,4 +1,4 @@
-package no.nb.pizzabakeren.activity;
+package no.bjornadal.pizzabakeren.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import no.nb.pizzabakeren.R;
-import no.nb.pizzabakeren.adapter.PizzaArrayAdapter;
-import no.nb.pizzabakeren.model.Pizza;
+import no.bjornadal.pizzabakeren.adapter.PizzaArrayAdapter;
+import no.bjornadal.pizzabakeren.model.Pizza;
 
 import java.util.ArrayList;
 import java.util.List;
