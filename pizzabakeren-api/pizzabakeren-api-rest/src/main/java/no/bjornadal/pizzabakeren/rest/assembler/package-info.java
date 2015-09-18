@@ -1,1 +1,0 @@
-package no.bjornadal.pizzabakeren.rest.assembler;

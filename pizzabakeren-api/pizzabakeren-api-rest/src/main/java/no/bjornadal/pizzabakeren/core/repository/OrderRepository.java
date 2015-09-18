@@ -1,15 +1,14 @@
 package no.bjornadal.pizzabakeren.core.repository;
 
-import no.bjornadal.pizzabakeren.model.Order;
+import no.bjornadal.pizzabakeren.core.model.OrderDocument;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * Created by alfredw on 9/18/15.
  */
-public interface OrderRepository extends Repository<Order, Long>{
+public interface OrderRepository extends MongoRepository<OrderDocument, String> {
 
-    void save(Order order);
-    Page<Order> findByGroupIdAndDate(String groupId, String date, PageRequest pageRequest);
+    Page<OrderDocument> findByGroupIdAndDate(String groupId, String date, Pageable pageRequest);
 }
