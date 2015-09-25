@@ -25,7 +25,12 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @RequestMapping(value = "/save",method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
+        return "Hello World from Pizzabakeren!";
+    }
+
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
     public void saveOrder(@RequestBody OrderResource orderResource) {
         orderService.saveOrder(orderResource);
     }
