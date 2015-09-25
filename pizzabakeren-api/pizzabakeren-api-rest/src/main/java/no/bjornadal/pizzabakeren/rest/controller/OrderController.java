@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/orders")
 public class OrderController {
 
     private static final Logger LOG = LoggerFactory.getLogger(OrderController.class);
@@ -30,7 +31,7 @@ public class OrderController {
         return "Hello World from Pizzabakeren!";
     }
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST)
     public void saveOrder(@RequestBody OrderResource orderResource) {
         orderService.saveOrder(orderResource);
     }

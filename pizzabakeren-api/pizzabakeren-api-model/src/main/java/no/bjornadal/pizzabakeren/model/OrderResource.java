@@ -1,6 +1,7 @@
 package no.bjornadal.pizzabakeren.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -43,8 +44,6 @@ public class OrderResource extends ResourceSupport {
         return username;
     }
 
-    public String getDate() {
-        return date;
-    }
+    public String getDate() { return date; }
 
 }

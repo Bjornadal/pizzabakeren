@@ -18,9 +18,10 @@ public class OrderResourceAssembler extends ResourceAssemblerSupport<OrderDocume
 
     @Override
     public OrderResource toResource(OrderDocument orderDocument) {
-        // TODO instantiate OrderResource
-        OrderResource orderResource = new OrderResource(orderDocument.getPizzaNumber(), orderDocument.getSoda(),
-                orderDocument.getGroupId(), orderDocument.getUsername(), orderDocument.getDate());
-        return orderResource;
+        return new OrderResource(orderDocument.getPizzaNumber(),
+                orderDocument.getSoda(),
+                orderDocument.getGroupId(),
+                orderDocument.getUsername(),
+                orderDocument.getDate());
     }
 }
