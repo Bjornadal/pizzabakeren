@@ -1,7 +1,6 @@
 package no.bjornadal.pizzabakeren.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -13,19 +12,16 @@ public class OrderResource extends ResourceSupport {
     private final String soda;
     private final String groupId;
     private final String username;
-    private final String date;
 
     @JsonCreator
     public OrderResource(@JsonProperty("pizzaNumber") int pizzaNumber,
                          @JsonProperty("soda") String soda,
                          @JsonProperty("groupId") String groupId,
-                         @JsonProperty("username") String username,
-                         @JsonProperty("date") String date) {
+                         @JsonProperty("username") String username) {
         this.pizzaNumber = pizzaNumber;
         this.soda = soda;
         this.groupId = groupId;
         this.username = username;
-        this.date = date;
     }
 
     public int getPizzaNumber() {
@@ -43,7 +39,5 @@ public class OrderResource extends ResourceSupport {
     public String getUsername() {
         return username;
     }
-
-    public String getDate() { return date; }
 
 }

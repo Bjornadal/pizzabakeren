@@ -3,6 +3,7 @@ package no.bjornadal.pizzabakeren.core.service;
 import no.bjornadal.pizzabakeren.core.model.OrderDocument;
 import no.bjornadal.pizzabakeren.core.repository.OrderRepository;
 import no.bjornadal.pizzabakeren.model.OrderResource;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void saveOrder(OrderResource orderResource) {
-        orderRepository.save(new OrderDocument(orderResource.getPizzaNumber(), orderResource.getSoda(), orderResource.getGroupId(), orderResource.getUsername(), orderResource.getDate()));
+        String date = DateTime.now().toString("yyyy-MM-dd");
+        orderRepository.save(new OrderDocument(orderResource.getPizzaNumber(), orderResource.getSoda(), orderResource.getGroupId(), orderResource.getUsername(), date));
     }
 
     @Override

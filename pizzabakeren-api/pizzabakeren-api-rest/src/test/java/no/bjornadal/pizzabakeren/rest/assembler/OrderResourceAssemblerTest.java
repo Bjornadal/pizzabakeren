@@ -22,6 +22,5 @@ public class OrderResourceAssemblerTest {
         assertEquals("Sprite", orderResource.getSoda());
         assertEquals("g1", orderResource.getGroupId());
         assertEquals("Ola Nordmann", orderResource.getUsername());
-        assertEquals("2015-09-25", orderResource.getDate());
     }
 }

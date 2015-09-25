@@ -21,7 +21,6 @@ public class OrderResourceAssembler extends ResourceAssemblerSupport<OrderDocume
         return new OrderResource(orderDocument.getPizzaNumber(),
                 orderDocument.getSoda(),
                 orderDocument.getGroupId(),
-                orderDocument.getUsername(),
-                orderDocument.getDate());
+                orderDocument.getUsername());
     }
 }

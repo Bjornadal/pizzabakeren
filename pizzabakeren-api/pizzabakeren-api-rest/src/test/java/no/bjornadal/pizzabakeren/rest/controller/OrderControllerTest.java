@@ -42,7 +42,7 @@ public class OrderControllerTest {
 
     @Test
     public void saveOrder() throws Exception {
-        OrderResource orderResource = new OrderResource(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25");
+        OrderResource orderResource = new OrderResource(28, "Sprite", "g1", "Ola Nordmann");
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(orderResource);
 

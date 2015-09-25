@@ -2,7 +2,9 @@ package no.bjornadal.pizzabakeren.service;
 
 import no.bjornadal.pizzabakeren.model.Order;
 import no.bjornadal.pizzabakeren.model.WorkingOrder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -11,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class OrderService {
 
     private WorkingOrder currentOrder = new WorkingOrder();
-    private String url = "http://localhost/pizzabakeren";
+    private String url = "http://andreasb.nb.no:8081/pizzabakeren/orders";
 
     public static OrderService orderService;
 
@@ -22,9 +24,10 @@ public class OrderService {
         order.setGroupId(currentOrder.getGroupId());
         order.setUsername(currentOrder.getUsername());
 
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-//        restTemplate.postForObject(url, order, Order.class);
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        ResponseEntity<String> response = restTemplate.postForEntity(url, order, String.class);
 
         resetInstance();
     }

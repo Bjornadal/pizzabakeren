@@ -8,18 +8,15 @@ public class Order {
     private String soda;
     private String groupId;
     private String username;
-    private String date;
 
     public Order() {
     }
 
-
-    public Order(int pizzaNumber, String soda, String groupId, String username, String date) {
+    public Order(int pizzaNumber, String soda, String groupId, String username) {
         this.pizzaNumber = pizzaNumber;
         this.soda = soda;
         this.groupId = groupId;
         this.username = username;
-        this.date = date;
     }
 
     public int getPizzaNumber() {
@@ -54,11 +51,4 @@ public class Order {
         this.username = username;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 }
