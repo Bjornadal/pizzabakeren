@@ -25,7 +25,7 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity saveOrder(@RequestBody OrderResource orderResource) {
         if (orderService.getOrder(orderResource.getUsername(), orderResource.getGroupId(), DateTime.now().toString("yyyy-MM-dd")) != null) {
-            return new ResponseEntity(HttpStatus.FORBIDDEN);
+            return new ResponseEntity(HttpStatus.ALREADY_REPORTED);
         }
         orderService.saveOrder(orderResource);
 

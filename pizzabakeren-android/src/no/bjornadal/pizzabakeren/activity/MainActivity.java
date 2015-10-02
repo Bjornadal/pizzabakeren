@@ -1,15 +1,19 @@
 package no.bjornadal.pizzabakeren.activity;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import no.bjornadal.pizzabakeren.alarm.AlarmReceiver;
+import no.bjornadal.pizzabakeren.service.NotificationService;
 import no.bjornadal.pizzabakeren.service.OrderService;
 import no.nb.pizzabakeren.R;
-import org.springframework.util.StringUtils;
 
 /**
  * Created by andreasb on 11.09.15.
@@ -17,6 +21,7 @@ import org.springframework.util.StringUtils;
 public class MainActivity extends Activity {
 
     public static final String PREFS_NAME = "MySettings";
+    //private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,22 @@ public class MainActivity extends Activity {
         etFullname.setText(fullname);
         etGroup.setText(group);
 
+//        Intent alarmIntent = new Intent(MainActivity.this, NotificationService.class);
+//        pendingIntent = PendingIntent.getService(MainActivity.this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        findViewById(R.id.btnStartAlarm).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                start();
+//            }
+//        });
+
     }
+
+//    public void start() {
+//        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
+//        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
+//    }
 
     public void startOrder(View view) {
         String fullname = ((EditText)findViewById(R.id.etFullname)).getText().toString();

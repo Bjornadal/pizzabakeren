@@ -4,10 +4,11 @@ package no.bjornadal.pizzabakeren.model;
  * Created by andreasb on 18.09.15.
  */
 public class Order {
-    private int pizzaNumber;
-    private String soda;
     private String groupId;
     private String username;
+    private int pizzaNumber;
+    private String soda;
+    private int totalPrice;
 
     public Order() {
     }
@@ -17,6 +18,14 @@ public class Order {
         this.soda = soda;
         this.groupId = groupId;
         this.username = username;
+    }
+
+    public Order(String groupId, String username, int pizzaNumber, String soda, int totalPrice) {
+        this.groupId = groupId;
+        this.username = username;
+        this.pizzaNumber = pizzaNumber;
+        this.soda = soda;
+        this.totalPrice = totalPrice;
     }
 
     public int getPizzaNumber() {
@@ -51,4 +60,11 @@ public class Order {
         this.username = username;
     }
 
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

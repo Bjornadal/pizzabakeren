@@ -6,9 +6,11 @@
     <uses-sdk android:minSdkVersion="21"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:debuggable="true">
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <application android:label="@string/app_name" android:icon="@drawable/pizza" android:debuggable="true" android:theme="@android:style/Theme.Holo">
         <activity android:name="no.bjornadal.pizzabakeren.activity.MainActivity"
-                  android:label="@string/app_name">
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -17,7 +19,8 @@
         <activity
             android:name="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity"
             android:label="Velg din pizza"
-            android:parentActivityName="no.bjornadal.pizzabakeren.activity.MainActivity">
+            android:parentActivityName="no.bjornadal.pizzabakeren.activity.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity" />
@@ -25,7 +28,8 @@
         <activity
             android:name="no.bjornadal.pizzabakeren.activity.SelectSodaActivity"
             android:label="Velg din brus"
-            android:parentActivityName="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity">
+            android:parentActivityName="no.bjornadal.pizzabakeren.activity.SelectPizzaActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.bjornadal.pizzabakeren.activity.SelectSodaActivity" />
@@ -33,11 +37,19 @@
         <activity
             android:name="no.bjornadal.pizzabakeren.activity.ConfirmActivity"
             android:label="Din bestilling"
-            android:parentActivityName="no.bjornadal.pizzabakeren.activity.SelectSodaActivity">
+            android:parentActivityName="no.bjornadal.pizzabakeren.activity.SelectSodaActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="andoird.support.PARENT_ACTIVITY"
                 android:value="no.nb.pizzabakeren.activity.ConfirmActivity" />
         </activity>
+        <receiver android:name="no.bjornadal.pizzabakeren.alarm.DeviceBootReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <service android:name="no.bjornadal.pizzabakeren.service.NotificationService" android:enabled="true">
 
+        </service>
     </application>
 </manifest>

@@ -32,8 +32,24 @@ public class SelectPizzaActivity extends Activity {
         pizzas.add(new Pizza(6, "MIX" , "Ost, tomatsaus, pepperoni, løk og paprika", 51));
         pizzas.add(new Pizza(7, "MEKSIKANEREN" , "Ost, tomatsaus, marinert kylling, marinert biff, nachoschips, hvitløk, mais og chili", 65));
         pizzas.add(new Pizza(8, "BIFFEN" , "Ost, tomatsaus, marinert biff i strimler, bacon og hvitløk", 65));
-        pizzas.add(new Pizza(9, "DEN MARINERTE\n" , "Ost, tomatsaus, marinert biff i strimler, sjampinjong og løk", 60));
+        pizzas.add(new Pizza(9, "DEN MARINERTE" , "Ost, tomatsaus, marinert biff i strimler, sjampinjong og løk", 60));
         pizzas.add(new Pizza(10, "PEPPERSVENNEN" , "Ost, tomatsaus, pepperbiff i strimler, sjampinjong, løk og paprika ", 60));
+        pizzas.add(new Pizza(11, "FLAMMEN" , "Ost, tacosaus, kjøttdeig, nachoschips og jalapeños", 60));
+        pizzas.add(new Pizza(12, "TACOKYLLINGEN" , "Ost, tacosaus, marinert kylling, nachoschips og jalapeños", 65));
+        pizzas.add(new Pizza(13, "KOKKENS KYLLING" , "Ost, tomatsaus, marinert kylling, løk, mais og sjampinjong", 60));
+        pizzas.add(new Pizza(14, "KOKKENS FAVORITT" , "Ost, tomatsaus, kjøttdeig, luksusbacon og ananas", 60));
+        pizzas.add(new Pizza(15, "GNISTEN" , "Ost, tomatsaus, kjøttdeig, løk, hvitløk og jalapeños", 60));
+        pizzas.add(new Pizza(16, "LUKSUSKYLLING" , "Ost, tomatsaus, marinert kylling, luksusbacon, løk og paprika", 65));
+        pizzas.add(new Pizza(17, "KYLLINGFARMEN" , "Ost, tomatsaus, marinert kylling, chili, pesto og tomater i skiver", 60));
+        pizzas.add(new Pizza(18, "VEGETARIANEREN" , "Ost, tomatsaus, ananas, sjampinjong, løk, mais og paprika", 46));
+        pizzas.add(new Pizza(19, "KEBABEN" , "Ost, tacosaus, kebabkjøtt, mais, rødløk og jalapeño. Toppes med kebab hvitløksdressing", 65));
+        pizzas.add(new Pizza(20, "DREGEN" , "Ost, tomatsaus, skinke og bacon", 51));
+        pizzas.add(new Pizza(21, "MR.X" , "Ost, tomatsaus, kjøttdeig, pepperoni, løk og ananas ", 60));
+        pizzas.add(new Pizza(22, "CHORIZO SPESIAL" , "Ost, tomatsaus, chorizo, marinert biff og løk", 60));
+        pizzas.add(new Pizza(23, "DOBBELDEKKER" , "Ost, tomatsaus, skinke, kjøttdeig og oregano", 60));
+        pizzas.add(new Pizza(24, "HEIT KYLLING" , "Ost, tomatsaus, sterk og marinert kylling, bacon og ananas", 60));
+        pizzas.add(new Pizza(25, "CHORIZOEN" , "Ost, tomatsaus, chorizo, pesto, oregano og tomat", 60));
+        pizzas.add(new Pizza(28, "HOTTENTOTTEN" , "Ost, tomatsaus, pepperbiff, pepperoni og paprika", 60));
 
         final ListView listView = (ListView) findViewById(R.id.pizzaList);
         PizzaArrayAdapter adapter = new PizzaArrayAdapter(this, R.layout.pizza_item, pizzas);
