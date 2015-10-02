@@ -21,7 +21,7 @@ public class SearchResourceAssemblerTest {
     @Test
     public void toResource() {
         SearchResourceAssembler searchResourceAssembler = new SearchResourceAssembler();
-        List<OrderDocument> content = Arrays.asList(new OrderDocument(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25"));
+        List<OrderDocument> content = Arrays.asList(new OrderDocument(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25", 65));
         Page<OrderDocument> orderDocumentPage = new PageImpl<>(content, new PageRequest(0, 10), 1);
 
         SearchResource searchResource = searchResourceAssembler.toResource(orderDocumentPage);

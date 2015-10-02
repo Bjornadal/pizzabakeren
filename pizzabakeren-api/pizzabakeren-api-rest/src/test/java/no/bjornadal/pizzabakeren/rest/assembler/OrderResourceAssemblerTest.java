@@ -13,7 +13,7 @@ public class OrderResourceAssemblerTest {
 
     @Test
     public void toResource() {
-        OrderDocument orderDocument = new OrderDocument(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25");
+        OrderDocument orderDocument = new OrderDocument(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25", 65);
         OrderResourceAssembler orderResourceAssembler = new OrderResourceAssembler();
 
         OrderResource orderResource = orderResourceAssembler.toResource(orderDocument);

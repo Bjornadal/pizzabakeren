@@ -17,14 +17,16 @@ public class OrderDocument {
     private String groupId;
     private String username;
     private String date;
+    private int totalPrice;
 
     @PersistenceConstructor
-    public OrderDocument(int pizzaNumber, String soda, String groupId, String username, String date) {
+    public OrderDocument(int pizzaNumber, String soda, String groupId, String username, String date, int totalPrice) {
         this.pizzaNumber = pizzaNumber;
         this.soda = soda;
         this.groupId = groupId;
         this.username = username;
         this.date = date;
+        this.totalPrice = totalPrice;
     }
 
     public String getId() {
@@ -49,6 +51,10 @@ public class OrderDocument {
 
     public String getDate() {
         return date;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
     }
 
     @Override

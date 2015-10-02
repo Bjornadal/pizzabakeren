@@ -12,16 +12,19 @@ public class OrderResource extends ResourceSupport {
     private final String soda;
     private final String groupId;
     private final String username;
+    private final int totalPrice;
 
     @JsonCreator
     public OrderResource(@JsonProperty("pizzaNumber") int pizzaNumber,
                          @JsonProperty("soda") String soda,
                          @JsonProperty("groupId") String groupId,
-                         @JsonProperty("username") String username) {
+                         @JsonProperty("username") String username,
+                         @JsonProperty("totalPrice") int totalPrice) {
         this.pizzaNumber = pizzaNumber;
         this.soda = soda;
         this.groupId = groupId;
         this.username = username;
+        this.totalPrice = totalPrice;
     }
 
     public int getPizzaNumber() {
@@ -40,4 +43,7 @@ public class OrderResource extends ResourceSupport {
         return username;
     }
 
+    public int getTotalPrice() {
+        return totalPrice;
+    }
 }

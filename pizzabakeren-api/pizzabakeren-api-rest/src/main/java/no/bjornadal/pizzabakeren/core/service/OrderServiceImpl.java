@@ -5,9 +5,9 @@ import no.bjornadal.pizzabakeren.core.repository.OrderRepository;
 import no.bjornadal.pizzabakeren.model.OrderResource;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by alfredw on 9/18/15.
@@ -25,11 +25,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void saveOrder(OrderResource orderResource) {
         String date = DateTime.now().toString("yyyy-MM-dd");
-        orderRepository.save(new OrderDocument(orderResource.getPizzaNumber(), orderResource.getSoda(), orderResource.getGroupId(), orderResource.getUsername(), date));
+        orderRepository.save(new OrderDocument(orderResource.getPizzaNumber(), orderResource.getSoda(), orderResource.getGroupId().toLowerCase(), orderResource.getUsername().toLowerCase(), date, orderResource.getTotalPrice()));
     }
 
     @Override
-    public Page<OrderDocument> getOrders(String groupId, String date, PageRequest pageRequest) {
-        return orderRepository.findByGroupIdAndDate(groupId, date, pageRequest);
+    public OrderDocument getOrder(String username, String groupId, String date) {
+        return orderRepository.findByUsernameAndGroupIdAndDate(username.toLowerCase(), groupId.toLowerCase(), date);
+    }
+
+    @Override
+    public List<OrderDocument> getOrders(String groupId, String date) {
+        return orderRepository.findByGroupIdAndDate(groupId.toLowerCase(), date);
     }
 }
