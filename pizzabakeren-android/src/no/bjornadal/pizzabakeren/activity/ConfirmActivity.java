@@ -37,7 +37,6 @@ public class ConfirmActivity extends Activity {
         OrderService.getInstance().saveCurrentOrder();
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
         Toast toast = Toast.makeText(getApplicationContext(), "Din ordre er sendt!", Toast.LENGTH_LONG);

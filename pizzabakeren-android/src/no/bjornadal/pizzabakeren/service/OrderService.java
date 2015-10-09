@@ -1,12 +1,11 @@
 package no.bjornadal.pizzabakeren.service;
 
+import android.os.AsyncTask;
 import no.bjornadal.pizzabakeren.model.Order;
 import no.bjornadal.pizzabakeren.model.WorkingOrder;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -23,17 +22,11 @@ public class OrderService {
         Order order = new Order();
         order.setPizzaNumber(currentOrder.getPizza().getNumber());
         order.setSoda(currentOrder.getSoda().getName());
-        order.setGroupId(currentOrder.getGroupId());
-        order.setUsername(currentOrder.getUsername());
+        order.setGroupId(currentOrder.getGroupId().trim().toLowerCase());
+        order.setUsername(currentOrder.getUsername().trim().toLowerCase());
         order.setTotalPrice(currentOrder.getPizza().getPrice());
 
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-
-
-        ResponseEntity<String> response = restTemplate.postForEntity(url, order, String.class);
-
+        new OrderSaveTask().execute(order);
 
         resetInstance();
     }
@@ -56,5 +49,19 @@ public class OrderService {
 
     public static void resetInstance() {
         orderService = null;
+    }
+
+    private class OrderSaveTask extends AsyncTask<Order, Void, ResponseEntity<String>> {
+        @Override
+        protected ResponseEntity<String> doInBackground(Order... orders) {
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+
+            Order order = orders[0];
+            ResponseEntity<String> response = restTemplate.postForEntity(url, order, String.class);
+
+            return response;
+        }
     }
 }
