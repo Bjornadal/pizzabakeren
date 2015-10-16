@@ -10,18 +10,11 @@ import org.springframework.hateoas.ResourceSupport;
  */
 public class SearchResource extends ResourceSupport {
 
-    private PageMetadata metadata;
     private EmbeddedWrapper embeddedWrapper;
 
     @JsonCreator
-    public SearchResource(@JsonProperty(value = "page") PageMetadata metadata,
-                          @JsonProperty(value = "_embedded") EmbeddedWrapper embeddedWrapper) {
-        this.metadata = metadata;
+    public SearchResource(@JsonProperty(value = "_embedded") EmbeddedWrapper embeddedWrapper) {
         this.embeddedWrapper = embeddedWrapper;
-    }
-
-    public PageMetadata getMetadata() {
-        return metadata;
     }
 
     public EmbeddedWrapper getEmbeddedWrapper() {

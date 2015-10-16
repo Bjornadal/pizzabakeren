@@ -14,5 +14,5 @@ public interface OrderService {
 
     OrderDocument getOrder(String username, String groupId, String date);
 
-    List<OrderDocument> getOrders(String groupId, String date);
+    List<OrderResource> getOrders(String groupId, String date);
 }

@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +35,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDocument> getOrders(String groupId, String date) {
-        return orderRepository.findByGroupIdAndDate(groupId.toLowerCase(), date);
+    public List<OrderResource> getOrders(String groupId, String date) {
+        List<OrderDocument> orderDocuments = orderRepository.findByGroupIdAndDate(groupId.toLowerCase(), date);
+        List<OrderResource> orderResources = new ArrayList<>();
+        for (OrderDocument orderDocument : orderDocuments) {
+            OrderResource orderResource = new OrderResource(orderDocument.getPizzaNumber(), orderDocument.getSoda(),
+                    orderDocument.getGroupId(), orderDocument.getUsername(), orderDocument.getTotalPrice());
+
+            orderResources.add(orderResource);
+        }
+        return orderResources;
     }
 }

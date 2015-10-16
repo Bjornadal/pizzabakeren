@@ -18,12 +18,13 @@ public class SearchResourceAssembler implements ResourceAssembler<Page<OrderDocu
     public SearchResource toResource(Page<OrderDocument> orderDocumentPage) {
         // TODO clean up
         PageMetadata metadata = new PageMetadata(orderDocumentPage.getSize(), orderDocumentPage.getNumber(), orderDocumentPage.getTotalElements());
-        EmbeddedWrapper embeddedWrapper = new EmbeddedWrapper();
-        for (OrderDocument orderDocument : orderDocumentPage.getContent()) {
-            embeddedWrapper.getOrders().add(orderResourceAssembler.toResource(orderDocument));
-        }
+//        EmbeddedWrapper embeddedWrapper = new EmbeddedWrapper();
+//        for (OrderDocument orderDocument : orderDocumentPage.getContent()) {
+//            embeddedWrapper.getOrders().add(orderResourceAssembler.toResource(orderDocument));
+//        }
 
         // TODO add hrefs to resources
-        return new SearchResource(metadata, embeddedWrapper);
+//        return new SearchResource(metadata, embeddedWrapper);
+        return null;
     }
 }

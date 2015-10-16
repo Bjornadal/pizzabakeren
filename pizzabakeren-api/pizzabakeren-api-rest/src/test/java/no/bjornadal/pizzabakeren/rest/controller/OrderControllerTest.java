@@ -1,57 +1,89 @@
 package no.bjornadal.pizzabakeren.rest.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import no.bjornadal.pizzabakeren.core.model.OrderDocument;
 import no.bjornadal.pizzabakeren.core.service.OrderService;
 import no.bjornadal.pizzabakeren.model.OrderResource;
+import no.bjornadal.pizzabakeren.model.SearchResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderControllerTest {
 
-    private MockMvc mockMvc;
-
-    private OrderController orderController;
-
     @Mock
     private OrderService mockedOrderService;
+
+    private OrderController orderController;
+    private static final String PIZZA_GROUP = "pizzaGroup";
 
     @Before
     public void setup() {
         orderController = new OrderController(mockedOrderService);
-        mockMvc = MockMvcBuilders.standaloneSetup(orderController).build();
     }
 
     @Test
     public void saveOrder() throws Exception {
-        OrderResource orderResource = new OrderResource(28, "Sprite", "g1", "Ola Nordmann", 65);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(orderResource);
+        OrderResource orderResource = new OrderResourceBuilder().build();
 
-        mockMvc.perform(post("/orders").contentType(MediaType.APPLICATION_JSON).content(json))
-                .andExpect(status().isOk());
+        orderController.saveOrder(orderResource);
+
+        verify(mockedOrderService).saveOrder(orderResource);
     }
 
     @Test
-    public void listAllOrders() throws Exception{
-        List<OrderDocument> content = Arrays.asList(new OrderDocument(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25", 65));
-        when(mockedOrderService.getOrders("g1", "2015-09-25")).thenReturn(content);
-        mockMvc.perform(get("/orders/g1/2015-09-25"))
-                .andExpect(status().isOk());
+    public void listAllOrders() {
+        List<OrderResource> orders = Arrays.asList(new OrderResourceBuilder().build());
+        when(mockedOrderService.getOrders(PIZZA_GROUP, "2015-09-25")).thenReturn(orders);
+
+        SearchResource searchResource = orderController.listAllOrders(PIZZA_GROUP, "2015-09-25");
+
+        assertNotNull(searchResource);
+    }
+
+    @Test
+    public void ordersWithPizzas_4_27_28_28_ShouldHavePizzaSummary() {
+        List<OrderResource> orders = createOrders();
+        when(mockedOrderService.getOrders(PIZZA_GROUP, "2015-09-25")).thenReturn(orders);
+
+        SearchResource searchResource = orderController.listAllOrders(PIZZA_GROUP, "2015-09-25");
+
+        Map<Integer, Integer> pizzaSummary = searchResource.getEmbeddedWrapper().getPizzaSummary();
+        assertEquals(new Integer(1), pizzaSummary.get(4));
+        assertEquals(new Integer(1), pizzaSummary.get(27));
+        assertEquals(new Integer(2), pizzaSummary.get(28));
+    }
+
+    @Test
+    public void ordersWithSodaSpriteSpriteColaFantaShouldHaveSodaSummary() throws Exception{
+        List<OrderResource> orders = createOrders();
+        when(mockedOrderService.getOrders(PIZZA_GROUP, "2015-09-25")).thenReturn(orders);
+
+        SearchResource searchResource = orderController.listAllOrders(PIZZA_GROUP, "2015-09-25");
+
+        Map<String, Integer> sodaSummary = searchResource.getEmbeddedWrapper().getSodaSummary();
+        assertEquals(new Integer(1), sodaSummary.get("Cola"));
+        assertEquals(new Integer(1), sodaSummary.get("Fanta"));
+        assertEquals(new Integer(2), sodaSummary.get("Sprite"));
+    }
+
+    private List<OrderResource> createOrders() {
+        List<OrderResource> orders = new ArrayList<>();
+        orders.add(new OrderResourceBuilder().withUsername("Ola").build());
+        orders.add(new OrderResourceBuilder().withUsername("Per").withPizzaNumber(4).build());
+        orders.add(new OrderResourceBuilder().withUsername("Karl").withPizzaNumber(27).withSoda("Cola").build());
+        orders.add(new OrderResourceBuilder().withUsername("Morten").withPizzaNumber(28).withSoda("Fanta").build());
+        return orders;
     }
 }

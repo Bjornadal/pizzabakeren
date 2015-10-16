@@ -15,6 +15,6 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
+      host: andreasb.nb.no
       port: 27017
       database: pizzabakeren
