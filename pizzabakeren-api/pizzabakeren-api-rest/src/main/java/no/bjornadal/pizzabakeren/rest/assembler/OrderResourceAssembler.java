@@ -2,19 +2,12 @@ package no.bjornadal.pizzabakeren.rest.assembler;
 
 import no.bjornadal.pizzabakeren.core.model.OrderDocument;
 import no.bjornadal.pizzabakeren.model.OrderResource;
-import no.bjornadal.pizzabakeren.rest.controller.OrderController;
-import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
-import org.springframework.stereotype.Component;
+import org.springframework.hateoas.ResourceAssembler;
 
 /**
- * Created by alfredw on 9/18/15.
+ * Created by Alfred on 17.10.2015.
  */
-@Component
-public class OrderResourceAssembler extends ResourceAssemblerSupport<OrderDocument, OrderResource> {
-
-    public OrderResourceAssembler() {
-        super(OrderController.class, OrderResource.class);
-    }
+public class OrderResourceAssembler implements ResourceAssembler<OrderDocument, OrderResource> {
 
     @Override
     public OrderResource toResource(OrderDocument orderDocument) {

@@ -2,27 +2,26 @@ package no.bjornadal.pizzabakeren.rest.assembler;
 
 import no.bjornadal.pizzabakeren.core.model.OrderDocument;
 import no.bjornadal.pizzabakeren.model.OrderResource;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by alfredw on 9/25/15.
+ * Created by Alfred on 17.10.2015.
  */
-@Ignore
 public class OrderResourceAssemblerTest {
 
     @Test
-    public void toResource() {
-        OrderDocument orderDocument = new OrderDocument(28, "Sprite", "g1", "Ola Nordmann", "2015-09-25", 65);
+    public void orderDocumentToOrderResource() {
+        OrderDocument orderDocument = new OrderDocument(28, "sprite", "pizza group", "ola nordmann", "2015-10-15", 69);
         OrderResourceAssembler orderResourceAssembler = new OrderResourceAssembler();
 
         OrderResource orderResource = orderResourceAssembler.toResource(orderDocument);
 
-        assertEquals(28, orderResource.getPizzaNumber());
-        assertEquals("Sprite", orderResource.getSoda());
-        assertEquals("g1", orderResource.getGroupId());
-        assertEquals("Ola Nordmann", orderResource.getUsername());
+        assertEquals(orderDocument.getPizzaNumber(), orderResource.getPizzaNumber());
+        assertEquals(orderDocument.getSoda(), orderResource.getSoda());
+        assertEquals(orderDocument.getGroupId(), orderResource.getGroupId());
+        assertEquals(orderDocument.getUsername(), orderResource.getUsername());
+        assertEquals(orderDocument.getTotalPrice(), orderResource.getTotalPrice());
     }
 }
