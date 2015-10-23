@@ -8,20 +8,20 @@ import java.util.Map;
  */
 public class OrderWrapper {
     private List<Order> orders;
-    private Map<Integer, Integer> pizzaSummary;
+    private Map<String, Integer> pizzaSummary;
     private Map<String, Integer> sodaSummary;
     private int numberOfOrders;
 
     public OrderWrapper() {
     }
 
-    public OrderWrapper(List<Order> orders, Map<Integer, Integer> pizzaSummary, Map<String, Integer> sodaSummary) {
+    public OrderWrapper(List<Order> orders, Map<String, Integer> pizzaSummary, Map<String, Integer> sodaSummary) {
         this.orders = orders;
         this.pizzaSummary = pizzaSummary;
         this.sodaSummary = sodaSummary;
     }
 
-    public OrderWrapper(List<Order> orders, Map<Integer, Integer> pizzaSummary, Map<String, Integer> sodaSummary, int numberOfOrders) {
+    public OrderWrapper(List<Order> orders, Map<String, Integer> pizzaSummary, Map<String, Integer> sodaSummary, int numberOfOrders) {
         this.orders = orders;
         this.pizzaSummary = pizzaSummary;
         this.sodaSummary = sodaSummary;
@@ -36,11 +36,11 @@ public class OrderWrapper {
         this.orders = orders;
     }
 
-    public Map<Integer, Integer> getPizzaSummary() {
+    public Map<String, Integer> getPizzaSummary() {
         return pizzaSummary;
     }
 
-    public void setPizzaSummary(Map<Integer, Integer> pizzaSummary) {
+    public void setPizzaSummary(Map<String, Integer> pizzaSummary) {
         this.pizzaSummary = pizzaSummary;
     }
 

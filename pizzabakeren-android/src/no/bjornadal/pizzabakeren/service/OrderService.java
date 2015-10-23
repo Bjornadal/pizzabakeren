@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 import no.bjornadal.pizzabakeren.adapter.OrderArrayAdapter;
+import no.bjornadal.pizzabakeren.adapter.OrderSummaryArrayAdapter;
 import no.bjornadal.pizzabakeren.model.Order;
+import no.bjornadal.pizzabakeren.model.OrderSummary;
 import no.bjornadal.pizzabakeren.model.OrderWrapper;
 import no.bjornadal.pizzabakeren.model.WorkingOrder;
 import no.bjornadal.pizzabakeren.R;
@@ -81,6 +83,16 @@ public class OrderService {
         final ListView listView = (ListView) viewOrdersActivity.findViewById(R.id.orderList);
         OrderArrayAdapter adapter = new OrderArrayAdapter(viewOrdersActivity, R.layout.pizza_item, ordersList);
         listView.setAdapter(adapter);
+
+        final ListView listViewPizzaSummmary = (ListView) viewOrdersActivity.findViewById(R.id.pizzaSummaryList);
+        OrderSummaryArrayAdapter summaryArrayAdapter = new OrderSummaryArrayAdapter(viewOrdersActivity, R.layout.order_summary_item,
+                OrderSummary.transform(orders.getBody().getPizzaSummary()));
+        listViewPizzaSummmary.setAdapter(summaryArrayAdapter);
+
+        final ListView listViewSodaSummmary = (ListView) viewOrdersActivity.findViewById(R.id.sodaSummaryList);
+        OrderSummaryArrayAdapter summarySodaArrayAdapter = new OrderSummaryArrayAdapter(viewOrdersActivity, R.layout.order_summary_item,
+                OrderSummary.transform(orders.getBody().getSodaSummary()));
+        listViewSodaSummmary.setAdapter(summarySodaArrayAdapter);
     }
 
 
