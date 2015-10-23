@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import no.bjornadal.pizzabakeren.R;
 import no.bjornadal.pizzabakeren.alarm.AlarmReceiver;
 import no.bjornadal.pizzabakeren.service.NotificationService;
 import no.bjornadal.pizzabakeren.service.OrderService;
-import no.nb.pizzabakeren.R;
 
 /**
  * Created by andreasb on 11.09.15.
@@ -21,7 +21,6 @@ import no.nb.pizzabakeren.R;
 public class MainActivity extends Activity {
 
     public static final String PREFS_NAME = "MySettings";
-    //private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +37,9 @@ public class MainActivity extends Activity {
         etFullname.setText(fullname);
         etGroup.setText(group);
 
-//        Intent alarmIntent = new Intent(MainActivity.this, NotificationService.class);
-//        pendingIntent = PendingIntent.getService(MainActivity.this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        findViewById(R.id.btnStartAlarm).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                start();
-//            }
-//        });
-
+        Intent i = new Intent("no.bjornadal.events.ALARM_START");
+        sendBroadcast(i);
     }
-
-//    public void start() {
-//        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
-//        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
-//    }
 
     public void startOrder(View view) {
         String fullname = ((EditText)findViewById(R.id.etFullname)).getText().toString();
@@ -74,6 +60,20 @@ public class MainActivity extends Activity {
             editor.commit();
 
             Intent intent = new Intent(this, SelectPizzaActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public void viewCurrentOrders(View view) {
+        String group = ((EditText)findViewById(R.id.etGroup)).getText().toString().trim().toLowerCase();
+
+        if (group.isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Du må skrive inn gruppe", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else {
+            Intent intent = new Intent(this, ViewOrdersActivity.class);
+            intent.putExtra("group", group);
             startActivity(intent);
         }
     }

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import no.bjornadal.pizzabakeren.service.OrderService;
-import no.nb.pizzabakeren.R;
+import no.bjornadal.pizzabakeren.R;
 
 /**
  * Created by andreasb on 11.09.15.
@@ -34,12 +34,9 @@ public class ConfirmActivity extends Activity {
     }
 
     public void saveOrder(View view) {
-        OrderService.getInstance().saveCurrentOrder();
+        OrderService.getInstance().saveCurrentOrder(this);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
-        Toast toast = Toast.makeText(getApplicationContext(), "Din ordre er sendt!", Toast.LENGTH_LONG);
-        toast.show();
     }
 }

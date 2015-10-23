@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import no.nb.pizzabakeren.R;
+import no.bjornadal.pizzabakeren.R;
 import no.bjornadal.pizzabakeren.model.Pizza;
 
 import java.util.List;

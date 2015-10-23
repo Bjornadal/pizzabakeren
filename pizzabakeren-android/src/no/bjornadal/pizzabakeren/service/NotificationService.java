@@ -6,9 +6,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
 import no.bjornadal.pizzabakeren.activity.MainActivity;
-import no.nb.pizzabakeren.R;
+import no.bjornadal.pizzabakeren.R;
 
 /**
  * Created by andreasb on 02.10.15.
@@ -17,7 +16,7 @@ public class NotificationService extends Service {
 
     @Override
     public void onCreate() {
-
+        super.onCreate();
     }
 
     @Override
@@ -34,8 +33,10 @@ public class NotificationService extends Service {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationBuilder.flags |= Notification.FLAG_AUTO_CANCEL;
+        notificationBuilder.defaults |= Notification.DEFAULT_LIGHTS;
         notificationManager.notify(1, notificationBuilder);
-        return START_STICKY;
+
+        return START_NOT_STICKY;
     }
 
     @Override

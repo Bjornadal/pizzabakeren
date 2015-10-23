@@ -13,11 +13,13 @@ public class DeviceBootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED") ||
+                intent.getAction().equals("no.bjornadal.events.ALARM_START")) {
             Intent alarmIntent = new Intent(context, NotificationService.class);
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, alarmIntent, 0);
 
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            manager.cancel(pendingIntent);
 
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
@@ -26,7 +28,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
             cal.set(Calendar.SECOND, 0);
             cal.set(Calendar.MILLISECOND, 0);
 
-            manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 604800000, pendingIntent); // 604800000 = 1 week
+            manager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 604800000, pendingIntent); // 604800000 = 1 week
         }
     }
 }

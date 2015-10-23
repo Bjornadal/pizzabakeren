@@ -10,6 +10,7 @@
         android:src="@drawable/pizza_banner"
         android:layout_marginTop="-10dp" />
 
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -54,9 +55,14 @@
             android:text="Ny bestilling"
             android:id="@+id/btnNewOrder"
             android:onClick="startOrder"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hent dagens bestilling"
+            android:id="@+id/btnGetOrders"
+            android:onClick="viewCurrentOrders"/>
     </LinearLayout>
-
-
 
 
 </LinearLayout>

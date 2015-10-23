@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import no.bjornadal.pizzabakeren.service.OrderService;
-import no.nb.pizzabakeren.R;
+import no.bjornadal.pizzabakeren.R;
 import no.bjornadal.pizzabakeren.adapter.SodaArrayAdapter;
 import no.bjornadal.pizzabakeren.model.Soda;
 
