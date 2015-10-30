@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void saveOrder(OrderResource orderResource) {
         String date = DateTime.now().toString("yyyy-MM-dd");
-        orderRepository.save(new OrderDocument(orderResource.getPizzaNumber(), orderResource.getSoda(), orderResource.getGroupId().toLowerCase(), orderResource.getUsername().toLowerCase(), date, orderResource.getTotalPrice()));
+        orderRepository.save(new OrderDocument(orderResource.getPizzaNumber(), orderResource.getSoda(), orderResource.getGroupId().toLowerCase(), orderResource.getUsername().toLowerCase().trim(), date, orderResource.getTotalPrice()));
     }
 
     @Override
