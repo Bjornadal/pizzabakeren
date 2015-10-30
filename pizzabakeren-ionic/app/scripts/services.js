@@ -47,4 +47,7 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+  .factory('PizzaFactory', function($firebaseObject) {
+
+  });

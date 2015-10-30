@@ -1,0 +1,41 @@
+{
+  "pizzaList": [
+    {
+      "nr": 1,
+      "name": "DEN ENKLE",
+      "description": "",
+      "price": 59
+    },
+    {
+      "nr": 2,
+      "name": "KVESS",
+      "description": "",
+      "price": 59
+    },
+    {
+      "nr": 3,
+      "name": "DRØMMEN",
+      "description": "",
+      "price": 59
+    },
+    {
+      "nr": 4,
+      "name": "PIZZABAKEREN SPESIAL",
+      "description": "",
+      "price": 59
+    },
+    {
+      "nr": 5,
+      "name": "SNADDER",
+      "description": "",
+      "price": 59
+    },
+    {
+      "nr": 6,
+      "name": "MIX",
+      "description": "",
+      "price": 59
+    }
+  ]
+}
+
