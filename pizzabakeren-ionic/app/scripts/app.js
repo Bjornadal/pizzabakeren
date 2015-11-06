@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'config'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'config', 'ngCordova'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -64,6 +64,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           'tab-dash': {
             templateUrl: 'templates/order/soda-select.html',
             controller: 'SodaSelectCtrl'
+          }
+        }
+      })
+      .state('tab.confirmation', {
+        url: '/dash/pizza/soda/confirm',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/order/confirmation.html',
+            controller: 'OrderConfirmationCtrl'
           }
         }
       })

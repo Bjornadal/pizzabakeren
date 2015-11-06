@@ -1,1 +1,27 @@
-<p>Confirmation</p>
+<ion-view view-title="Bekreftelse">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Valgt Pizza
+      </div>
+      <div class="item item-text-wrap">
+        {{order.pizzaName}}
+      </div>
+      <div class="item item-divider">
+        Valgt Brus
+      </div>
+      <div class="item item-text-wrap">
+        {{order.soda}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button ng-click="saveOrder()" class="button button-balanced button-block">
+          Send
+        </button>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

@@ -60,6 +60,7 @@
     "com.ionic.keyboard",
     "org.apache.cordova.console",
     "org.apache.cordova.device",
-    "org.apache.cordova.device"
+    "org.apache.cordova.device",
+    "cordova-plugin-x-toast"
   ]
 }
