@@ -26,13 +26,12 @@ angular.module('starter.controllers', [])
   })
 
   .controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV, $state, OrderFactory, $cordovaToast) {
-    var ref = new Firebase(ENV.apiEndpoint + "/orders");
+    var ref = new Firebase(ENV.apiEndpoint + "/orders/newton/" + moment().format("YYYY-MM-DD"));
     var orders = $firebaseArray(ref);
 
     $scope.order = OrderFactory;
 
     $scope.saveOrder = function() {
-      $scope.order.date = (new Date()).toJSON();
       orders.$add($scope.order);
       $state.go('tab.dash');
 
@@ -43,11 +42,10 @@ angular.module('starter.controllers', [])
         }, function (error) {
           // error
         });
-
     }
   })
 
-  .controller('OrdersCtrl', function ($scope, Chats) {
+  .controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $filter) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -56,14 +54,12 @@ angular.module('starter.controllers', [])
     //$scope.$on('$ionicView.enter', function(e) {
     //});
 
-    $scope.chats = Chats.all();
-    $scope.remove = function (chat) {
-      Chats.remove(chat);
-    };
+    var ref = new Firebase(ENV.apiEndpoint + "/orders/newton/" + moment().format("YYYY-MM-DD"));
+    $scope.orders = $firebaseArray(ref);
   })
 
-  .controller('OrderDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
+  .controller('OrderDetailCtrl', function ($scope, $stateParams) {
+    $scope.chat = [{}];
   })
 
   .controller('SettingsCtrl', function ($scope) {

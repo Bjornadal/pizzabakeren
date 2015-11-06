@@ -77,20 +77,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       })
 
-      .state('tab.orders', {
-        url: '/orders',
+      .state('tab.history', {
+        url: '/history',
         views: {
-          'tab-orders': {
-            templateUrl: 'templates/tabs/tab-orders.html',
-            controller: 'OrdersCtrl'
+          'tab-history': {
+            templateUrl: 'templates/tabs/tab-history.html',
+            controller: 'HistoryCtrl'
           }
         }
       })
-      .state('tab.chat-detail', {
-        url: '/orders/:orderId',
+      .state('tab.history-detail', {
+        url: '/history/:orderId',
         views: {
-          'tab-orders': {
-            templateUrl: 'templates/order-detail.html',
+          'tab-history': {
+            templateUrl: 'templates/history/order-detail.html',
             controller: 'OrderDetailCtrl'
           }
         }
