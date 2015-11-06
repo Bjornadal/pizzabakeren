@@ -5,90 +5,99 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'config'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+  .run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleLightContent();
-    }
-  });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
-
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs/tabs.html'
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleLightContent();
+      }
+    });
   })
 
-  // Each tab has its own nav history stack:
+  .config(function ($stateProvider, $urlRouterProvider) {
 
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tabs/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-    .state('tab.pizza-select', {
-      url: '/dash/pizza',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/order/pizza-select.html',
-          controller: 'PizzaSelectCtrl'
-        }
-      }
-    })
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
 
-  .state('tab.orders', {
-      url: '/orders',
-      views: {
-        'tab-orders': {
-          templateUrl: 'templates/tabs/tab-orders.html',
-          controller: 'OrdersCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/orders/:orderId',
-      views: {
-        'tab-orders': {
-          templateUrl: 'templates/order-detail.html',
-          controller: 'OrderDetailCtrl'
-        }
-      }
-    })
+    // setup an abstract state for the tabs directive
+      .state('tab', {
+        url: '/tab',
+        abstract: true,
+        templateUrl: 'templates/tabs/tabs.html'
+      })
 
-  .state('tab.settings', {
-    url: '/settings',
-    views: {
-      'tab-settings': {
-        templateUrl: 'templates/tabs/tab-settings.html',
-        controller: 'SettingsCtrl'
-      }
-    }
+      // Each tab has its own nav history stack:
+
+      .state('tab.dash', {
+        url: '/dash',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/tabs/tab-dash.html',
+            controller: 'DashCtrl'
+          }
+        }
+      })
+      .state('tab.pizza-select', {
+        url: '/dash/pizza',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/order/pizza-select.html',
+            controller: 'PizzaSelectCtrl'
+          }
+        }
+      })
+      .state('tab.soda-select', {
+        url: '/dash/pizza/soda',
+        views: {
+          'tab-dash': {
+            templateUrl: 'templates/order/soda-select.html',
+            controller: 'SodaSelectCtrl'
+          }
+        }
+      })
+
+      .state('tab.orders', {
+        url: '/orders',
+        views: {
+          'tab-orders': {
+            templateUrl: 'templates/tabs/tab-orders.html',
+            controller: 'OrdersCtrl'
+          }
+        }
+      })
+      .state('tab.chat-detail', {
+        url: '/orders/:orderId',
+        views: {
+          'tab-orders': {
+            templateUrl: 'templates/order-detail.html',
+            controller: 'OrderDetailCtrl'
+          }
+        }
+      })
+
+      .state('tab.settings', {
+        url: '/settings',
+        views: {
+          'tab-settings': {
+            templateUrl: 'templates/tabs/tab-settings.html',
+            controller: 'SettingsCtrl'
+          }
+        }
+      });
+
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/tab/dash');
+
   });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
-
-});

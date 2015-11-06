@@ -1,0 +1,178 @@
+{
+  "pizzaList": [
+    {
+      "nr": 1,
+      "name": "DEN ENKLE",
+      "description": "Ost, tomatsaus – og bare det!",
+      "price": 59
+    },
+    {
+      "nr": 2,
+      "name": "KVESS",
+      "description": "Ost, tomatsaus, skinke og sjampinjong",
+      "price": 59
+    },
+    {
+      "nr": 3,
+      "name": "DRØMMEN",
+      "description": "Ost, tomatsaus, kjøttdeig og paprika",
+      "price": 59
+    },
+    {
+      "nr": 4,
+      "name": "PIZZABAKEREN SPESIAL",
+      "description": "Ost, tomatsaus, kjøttdeig, løk og bacon",
+      "price": 59
+    },
+    {
+      "nr": 5,
+      "name": "SNADDER",
+      "description": "Ost, tomatsaus, kjøttdeig, løk og ananas",
+      "price": 59
+    },
+    {
+      "nr": 6,
+      "name": "MIX",
+      "description": "Ost, tomatsaus, pepperoni, løk og paprika",
+      "price": 59
+    },
+    {
+      "nr": 7,
+      "name": "MEKSIKANEREN",
+      "description": "Ost, tomatsaus, marinert kylling, marinert biff, nachoschips, hvitløk, mais og chili",
+      "price": 69
+    },
+    {
+      "nr": 8,
+      "name": "BIFFEN",
+      "description": "Ost, tomatsaus, marinert biff i strimler, bacon og hvitløk",
+      "price": 69
+    },
+    {
+      "nr": 9,
+      "name": "DEN MARINERTE",
+      "description": "Ost, tomatsaus, marinert biff i strimler, sjampinjong og løk",
+      "price": 69
+    },
+    {
+      "nr": 10,
+      "name": "PEPPERSVENNEN",
+      "description": "Ost, tomatsaus, pepperbiff i strimler, sjampinjong, løk og paprika",
+      "price": 69
+    },
+    {
+      "nr": 11,
+      "name": "FLAMMEN",
+      "description": "Ost, tacosaus, kjøttdeig, nachoschips og jalapeños",
+      "price": 69
+    },
+    {
+      "nr": 12,
+      "name": "TACOKYLLINGEN",
+      "description": "Ost, tacosaus, marinert kylling, nachoschips og jalapeños",
+      "price": 69
+    },
+    {
+      "nr": 13,
+      "name": "KOKKENS KYLLING",
+      "description": "Ost, tomatsaus, marinert kylling, løk, mais og sjampinjong",
+      "price": 69
+    },
+    {
+      "nr": 14,
+      "name": "KOKKENS FAVORITT",
+      "description": "Ost, tomatsaus, kjøttdeig, luksusbacon og ananas",
+      "price": 69
+    },
+    {
+      "nr": 15,
+      "name": "GNISTEN",
+      "description": "Ost, tomatsaus, kjøttdeig, løk, hvitløk og jalapeños",
+      "price": 69
+    },
+    {
+      "nr": 16,
+      "name": "LUKSUSKYLLING",
+      "description": "Ost, tomatsaus, marinert kylling, luksusbacon, løk og paprika",
+      "price": 69
+    },
+    {
+      "nr": 17,
+      "name": "KYLLINGFARMEN",
+      "description": "Ost, tomatsaus, marinert kylling, chili, pesto og tomater i skiver",
+      "price": 69
+    },
+    {
+      "nr": 18,
+      "name": "VEGITARIANEREN",
+      "description": "Ost, tomatsaus, ananas, sjampinjong, løk, mais og paprika",
+      "price": 59
+    },
+    {
+      "nr": 19,
+      "name": "KEBABEN",
+      "description": "Ost, tacosaus, kebabkjøtt, mais, rødløk og jalapeño. Toppes med kebab hvitløksdressing",
+      "price": 69
+    },
+    {
+      "nr": 20,
+      "name": "DREGEN",
+      "description": "Ost, tomatsaus, skinke og bacon",
+      "price": 69
+    },
+    {
+      "nr": 21,
+      "name": "MR. X",
+      "description": "Ost, tomatsaus, kjøttdeig, pepperoni, løk og ananas",
+      "price": 69
+    },
+    {
+      "nr": 22,
+      "name": "CHORIZO SPESIAL",
+      "description": "Ost, tomatsaus, chorizo, marinert biff og løk",
+      "price": 69
+    },
+    {
+      "nr": 23,
+      "name": "DOBBELDEKKER",
+      "description": "Ost, tomatsaus, skinke, kjøttdeig og oregano",
+      "price": 69
+    },
+    {
+      "nr": 24,
+      "name": "HEIT KYLLING",
+      "description": "Ost, tomatsaus, sterk og marinert kylling, bacon og ananas",
+      "price": 69
+    },
+    {
+      "nr": 25,
+      "name": "CHORIZOEN",
+      "description": "Ost, tomatsaus, chorizo, pesto, oregano og tomat",
+      "price": 69
+    },
+    {
+      "nr": 28,
+      "name": "HOTTENTOTTEN",
+      "description": "Ost, tomatsaus, pepperbiff, pepperoni og paprika",
+      "price": 69
+    }
+  ],
+  "sodaList": [
+    {
+      "name": "Cola"
+    },
+    {
+      "name": "Cola Zero"
+    },
+    {
+      "name": "Fanta"
+    },
+    {
+      "name": "Urge"
+    },
+    {
+      "name": "Sprite"
+    }
+  ]
+}
+

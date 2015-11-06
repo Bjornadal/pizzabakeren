@@ -1,8 +1,11 @@
 <ion-view view-title="Velg din Pizza">
   <ion-content>
     <div class="list">
-      <div class="item item-divider" ng-repeat="pizza in pizzaList">
-        <h2>{{pizza.name}}</h2>
+      <div class="item item-divider" ng-repeat="pizza in pizzaList | orderBy: 'nr'">
+        <div ng-click="selectPizza(pizza)">
+          <h2>#{{pizza.nr}} {{pizza.name}}</h2>
+          <p>{{pizza.description}}</p>
+        </div>
       </div>
     </div>
   </ion-content>

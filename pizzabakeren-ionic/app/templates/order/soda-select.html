@@ -1,1 +1,11 @@
-<p>Soda list</p>
+<ion-view view-title="Velg din Brus">
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider" ng-repeat="soda in sodaList">
+        <div ng-click="selectSoda(soda)">
+          <h2>{{soda.name}}</h2>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
