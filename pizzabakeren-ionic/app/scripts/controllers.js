@@ -25,13 +25,17 @@ angular.module('starter.controllers', [])
     }
   })
 
-  .controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV, $state, OrderFactory, $cordovaToast) {
-    var ref = new Firebase(ENV.apiEndpoint + "/orders/newton/" + moment().format("YYYY-MM-DD"));
+  .controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV, $state, OrderFactory, $cordovaToast, $localstorage) {
+    var settings = $localstorage.getObject('settings');
+    var ref = new Firebase(ENV.apiEndpoint + "/orders/" + settings.group + "/" + moment().format("YYYY-MM-DD"));
     var orders = $firebaseArray(ref);
 
     $scope.order = OrderFactory;
 
     $scope.saveOrder = function() {
+      $scope.order.datetime = (new Date).toJSON();
+      $scope.order.user = settings.username;
+      $scope.order.group = settings.group;
       orders.$add($scope.order);
       $state.go('tab.dash');
 
@@ -45,7 +49,7 @@ angular.module('starter.controllers', [])
     }
   })
 
-  .controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $filter) {
+  .controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $localstorage) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -54,7 +58,8 @@ angular.module('starter.controllers', [])
     //$scope.$on('$ionicView.enter', function(e) {
     //});
 
-    var ref = new Firebase(ENV.apiEndpoint + "/orders/newton/" + moment().format("YYYY-MM-DD"));
+    var settings = $localstorage.getObject('settings');
+    var ref = new Firebase(ENV.apiEndpoint + "/orders/" + settings.group + "/" + moment().format("YYYY-MM-DD"));
     $scope.orders = $firebaseArray(ref);
   })
 
@@ -62,9 +67,11 @@ angular.module('starter.controllers', [])
     $scope.chat = [{}];
   })
 
-  .controller('SettingsCtrl', function ($scope) {
-    $scope.settings = {
-      enableFriends: true
-    };
+  .controller('SettingsCtrl', function ($scope, $localstorage) {
+    $scope.settings = $localstorage.getObject('settings');
 
+    $scope.save = function() {
+      $scope.settings.group = $scope.settings.group.toLowerCase();
+      $localstorage.setObject('settings', $scope.settings);
+    }
   });

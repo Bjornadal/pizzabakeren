@@ -3,12 +3,15 @@
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Ditt navn</span>
-        <input type="text" placeholder="Ditt navn">
+        <input type="text" placeholder="Ditt navn" ng-model="settings.username" ng-change="changed()">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Din gruppe</span>
-        <input type="text" placeholder="Din gruppe">
+        <input type="text" placeholder="Din gruppe" ng-model="settings.group" ng-change="changed()">
       </label>
+        <button class="button button-positive button-block" ng-click="save()">
+          Lagre
+        </button>
     </div>
   </ion-content>
 </ion-view>
