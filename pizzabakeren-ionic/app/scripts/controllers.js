@@ -58,8 +58,8 @@ angular.module('starter.controllers', [])
     //$scope.$on('$ionicView.enter', function(e) {
     //});
 
-    var settings = $localstorage.getObject('settings');
-    var ref = new Firebase(ENV.apiEndpoint + "/orders/" + settings.group + "/" + moment().format("YYYY-MM-DD"));
+    $scope.settings = $localstorage.getObject('settings');
+    var ref = new Firebase(ENV.apiEndpoint + "/orders/" + $scope.settings.group + "/" + moment().format("YYYY-MM-DD"));
     $scope.orders = $firebaseArray(ref);
   })
 
