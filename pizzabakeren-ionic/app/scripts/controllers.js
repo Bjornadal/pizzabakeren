@@ -61,6 +61,16 @@ angular.module('starter.controllers', [])
     $scope.settings = $localstorage.getObject('settings');
     var ref = new Firebase(ENV.apiEndpoint + "/orders/" + $scope.settings.group + "/" + moment().format("YYYY-MM-DD"));
     $scope.orders = $firebaseArray(ref);
+
+    $scope.pizzaSummary = {};
+    $scope.sodaSummary = {};
+
+    $scope.orders.$loaded(function() {
+      angular.forEach($scope.orders, function(value, key) {
+        $scope.pizzaSummary[value.pizzaNr] = ($scope.pizzaSummary[value.pizzaNr] == null) ? 1 : $scope.pizzaSummary[value.pizzaNr]+1;
+        $scope.sodaSummary[value.soda] = ($scope.sodaSummary[value.soda] == null) ? 1 : $scope.sodaSummary[value.soda]+1;
+      });
+    });
   })
 
   .controller('OrderDetailCtrl', function ($scope, $stateParams) {

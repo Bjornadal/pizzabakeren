@@ -1,5 +1,29 @@
-<ion-view view-title="Bestillinger for {{settings.group | capitalize}}">
+<ion-view view-title="Dagens bestillinger for {{settings.group | capitalize}}">
   <ion-content>
+        <div class="row">
+          <div class="col">
+            <h3>Pizza</h3>
+            <div class="row" ng-repeat="(key, value) in pizzaSummary">
+              <div class="col">
+                #{{ key }}
+              </div>
+              <div class="col">
+                {{value}}
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Brus</h3>
+            <div class="row" ng-repeat="(key, value) in sodaSummary">
+              <div class="col">
+                {{ key }}
+              </div>
+              <div class="col">
+                {{value}}
+              </div>
+            </div>
+          </div>
+        </div>
     <ion-list>
       <ion-item class="" ng-repeat="order in orders" type="item-text-wrap">
         <h2>{{order.user}}</h2>
