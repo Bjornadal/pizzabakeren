@@ -37,23 +37,25 @@ angular.module('starter.controllers', [])
   })
 
   .controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV, $state, OrderFactory, $cordovaToast, $localstorage) {
-    var settings = $localstorage.getObject('settings');
-    var ref = new Firebase(ENV.apiEndpoint + "/orders/" + settings.group + "/" + moment().format("YYYY-MM-DD"));
-    var orders = $firebaseArray(ref);
+    $scope.$on('$ionicView.enter', function(e) {
+      var settings = $localstorage.getObject('settings');
+      var ref = new Firebase(ENV.apiEndpoint + "/orders/" + settings.group + "/" + moment().format("YYYY-MM-DD"));
+      var orders = $firebaseArray(ref);
 
-    $scope.order = OrderFactory;
+      $scope.order = OrderFactory;
 
-    $scope.saveOrder = function() {
-      $scope.order.datetime = (new Date).toJSON();
-      $scope.order.user = settings.username;
-      $scope.order.group = settings.group;
-      orders.$add($scope.order);
-      $state.go('tab.dash');
+      $scope.saveOrder = function() {
+        $scope.order.datetime = (new Date).toJSON();
+        $scope.order.user = settings.username;
+        $scope.order.group = settings.group;
+        orders.$add($scope.order);
+        $state.go('tab.dash');
 
-      $cordovaToast
-        .show('Bestillingen ble sendt!', 'long', 'center')
-        .then(function(success) {}, function (error) {});
-    }
+        $cordovaToast
+          .show('Bestillingen ble sendt!', 'long', 'center')
+          .then(function(success) {}, function (error) {});
+      }
+    });
   })
 
   .controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $localstorage) {
