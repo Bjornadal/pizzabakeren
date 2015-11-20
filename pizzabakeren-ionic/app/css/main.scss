@@ -1,5 +1,7 @@
-/**
- * import variables and mixins, so we can use them below
- */
-@import 'variables.scss';
-@import '../bower_components/ionic/scss/_mixins.scss';
+@charset "UTF-8";
+
+@import "variables";
+
+@import "../bower_components/ionic/scss/ionic";
+
+@import "custom";
