@@ -20,7 +20,7 @@ var Orchestrator = require('orchestrator');
 
 var BASES = {
   android: 'res',
-  ios: 'Pizzabakeren/Resources'
+  ios: 'PizzabakerenIonic/Resources'
 };
 var RESOURCE_DIR = 'resources';
 
