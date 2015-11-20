@@ -1,25 +1,25 @@
 <ion-view view-title="Dagens bestillinger for {{settings.group | capitalize}}">
-  <ion-content>
+  <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
         <div class="row">
           <div class="col">
             <h3>Pizza</h3>
-            <div class="row" ng-repeat="(key, value) in pizzaSummary">
+            <div class="row" ng-repeat="pizza in summary.pizza | orderBy: 'nr'">
               <div class="col">
-                #{{ key }}
+                #{{ pizza.nr }}
               </div>
               <div class="col">
-                {{value}}
+                {{pizza.count}}
               </div>
             </div>
           </div>
           <div class="col">
             <h3>Brus</h3>
-            <div class="row" ng-repeat="(key, value) in sodaSummary">
+            <div class="row" ng-repeat="soda in summary.soda | orderBy: 'name'">
               <div class="col">
-                {{ key }}
+                {{ soda.name }}
               </div>
               <div class="col">
-                {{value}}
+                {{soda.count}}
               </div>
             </div>
           </div>

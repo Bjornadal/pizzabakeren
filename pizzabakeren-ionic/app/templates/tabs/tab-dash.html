@@ -1,20 +1,23 @@
 <ion-view view-title="Pizzabakeren">
-  <ion-content class="padding">
+  <ion-content>
     <img width="100%" src="images/pizza_banner.png" />
-    <div class="list card">
-      <div class="item item-divider">Bestill Pizza</div>
-      <div class="item item-body">
-        <div>
-          Legg inn din Pizzabaker bestilling ved å skrive inn ditt navn og den gruppen du tilhører. Din pizza sjef vil deretter motta din bestilling og viderefører denne til din lokale Pizzabaker.
+    <div class="padding">
+      <div class="list card">
+        <div class="item item-divider">Bestill Pizza</div>
+        <div class="item item-body">
+          <div>
+            Legg inn din Pizzabaker bestilling ved å skrive inn ditt navn og den gruppen du tilhører. Din pizza sjef vil deretter motta din bestilling og viderefører denne til din lokale Pizzabaker.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-center">
+          <button ng-click="startOrder()" class="button button-balanced button-block">
+            Ny bestilling
+          </button>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col col-center">
-          <button ng-click="startOrder()" class="button button-positive button-block">
-            Ny bestilling
-          </button>
-      </div>
-    </div>
+
   </ion-content>
 </ion-view>

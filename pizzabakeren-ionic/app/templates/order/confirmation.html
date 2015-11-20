@@ -16,9 +16,12 @@
     </div>
     <div class="row">
       <div class="col">
-        <button ng-click="saveOrder()" class="button button-balanced button-block">
+        <button ng-click="saveOrder()" class="button button-balanced button-block" ng-disabled="buttonDisabled">
           Send
         </button>
+        <div ng-show="buttonDisabled">
+          <h6>Du har allerede lagt inn bestilling i dag</h6>
+        </div>
       </div>
     </div>
 

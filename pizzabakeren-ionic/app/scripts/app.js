@@ -86,15 +86,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
-      .state('tab.history-detail', {
-        url: '/history/:orderId',
-        views: {
-          'tab-history': {
-            templateUrl: 'templates/history/order-detail.html',
-            controller: 'OrderDetailCtrl'
-          }
-        }
-      })
 
       .state('tab.settings', {
         url: '/settings',
