@@ -1,7 +1,8 @@
 <ion-view view-title="Velg din Brus">
   <ion-content>
     <div class="list">
-      <div class="item item-divider" ng-repeat="soda in sodaList" ng-click="selectSoda(soda)">
+      <div class="item item-thumbnail-left" ng-repeat="soda in sodaList" ng-click="selectSoda(soda)">
+        <img src="img/thumbnails/soda/{{soda.thumbnail}}">
         <h2>{{soda.name}}</h2>
       </div>
     </div>

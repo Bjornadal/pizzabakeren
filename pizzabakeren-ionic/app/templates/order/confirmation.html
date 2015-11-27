@@ -1,23 +1,57 @@
 <ion-view view-title="Bekreftelse">
   <ion-content>
-    <div class="card">
-      <div class="item item-divider">
-        Valgt Pizza
+    <div>
+      <div class="row">
+        <div class="col">
+          <h2>Din bestilling</h2>
+        </div>
       </div>
-      <div class="item item-text-wrap">
-        {{order.pizzaName}}
+      <div class="row">
+        <div class="col">
+          Navn
+        </div>
+        <div class="col">
+          <p>{{order.user}}</p>
+        </div>
       </div>
-      <div class="item item-divider">
-        Valgt Brus
+      <div class="row">
+        <div class="col">
+          Gruppe
+        </div>
+        <div class="col">
+          <p>{{order.group}}</p>
+        </div>
       </div>
-      <div class="item item-text-wrap">
-        {{order.soda}}
+      <div class="row">
+        <div class="col">
+          Pizza
+        </div>
+        <div class="col">
+          <p>#{{order.pizzaNr}} {{order.pizzaName}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Brus
+        </div>
+        <div class="col">
+          <p>{{order.soda}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Total
+        </div>
+        <div class="col">
+          <p>kr {{order.price}}</p>
+        </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col">
-        <button ng-click="saveOrder()" class="button button-stable button-block" ng-disabled="buttonDisabled">
-          Send
+        <button ng-click="saveOrder()" class="button button-positive button-block" ng-disabled="buttonDisabled">
+          SEND
         </button>
         <div ng-show="buttonDisabled">
           <h6>Du har allerede lagt inn bestilling i dag</h6>

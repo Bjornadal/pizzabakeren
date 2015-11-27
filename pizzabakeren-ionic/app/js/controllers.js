@@ -40,6 +40,8 @@ module.controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV
 
     $scope.buttonDisabled = true;
     $scope.order = OrderFactory;
+    $scope.order.user = settings.username;
+    $scope.order.group = settings.group;
 
     orders.$loaded(function () {
       var disabled = false;
@@ -53,8 +55,6 @@ module.controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV
 
     $scope.saveOrder = function () {
       $scope.order.datetime = (new Date).toJSON();
-      $scope.order.user = settings.username;
-      $scope.order.group = settings.group;
       orders.$add($scope.order);
       $state.go('tab.dash');
       $ionicPopup.alert({title: 'Bestillingen ble sendt!'});

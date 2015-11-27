@@ -2,8 +2,9 @@
   <ion-content>
     <div class="list">
       <div class="item item-divider" ng-repeat="pizza in pizzaList | orderBy: 'nr'" ng-click="selectPizza(pizza)">
-        <h2>#{{pizza.nr}} {{pizza.name}}</h2>
-        <p>{{pizza.description}}</p>
+        <h2>#{{pizza.nr}} {{pizza.name}} </h2>
+        <h3 class="padding-left" style="float: right;"> {{pizza.price}},- </h3>
+        <p class="nowrap">{{pizza.description}}</p>
       </div>
     </div>
   </ion-content>

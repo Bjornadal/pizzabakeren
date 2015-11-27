@@ -157,22 +157,21 @@
       "price": 69
     }
   ],
-  "sodaList": [
-    {
-      "name": "Cola"
-    },
-    {
-      "name": "Cola Zero"
-    },
-    {
-      "name": "Fanta"
-    },
-    {
-      "name": "Urge"
-    },
-    {
-      "name": "Sprite"
-    }
-  ]
+  "sodaList" : [ {
+    "name" : "Cola",
+    "thumbnail" : "cola.png"
+  }, {
+    "name" : "Cola Zero",
+    "thumbnail" : "zero.png"
+  }, {
+    "name" : "Fanta",
+    "thumbnail" : "fanta.png"
+  }, {
+    "name" : "Urge",
+    "thumbnail" : "urge.png"
+  }, {
+    "name" : "Sprite",
+    "thumbnail" : "sprite.png"
+  } ]
 }
 
