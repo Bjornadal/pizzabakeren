@@ -1,7 +1,17 @@
 @charset "UTF-8";
-
 @import "variables";
-
 @import "../bower_components/ionic/scss/ionic";
-
 @import "custom";
+
+.nowrap {
+  white-space: normal !important;
+}
+
+.summary {
+  background-color: $energized;
+  color: $darkOrange;
+}
+
+.summary h3 {
+  color: white;
+}

@@ -1,20 +1,28 @@
 <ion-view view-title="Innstillinger">
   <ion-content>
     <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Ditt navn</span>
-        <input type="text" placeholder="Ditt navn" ng-model="settings.username" ng-change="changed()">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Navn</span>
+        <input type="text" placeholder="Ola Nordmann" ng-model="settings.username" ng-disabled="true">
       </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Din gruppe</span>
-        <input type="text" placeholder="Din gruppe" ng-model="settings.group" ng-change="changed()">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Gruppe</span>
+        <input type="text" placeholder="Pizzagjengen" ng-model="settings.group" ng-blur="changed()">
       </label>
+    </div>
 
+    <div class="row" ng-show="!settings.loggedIn">
+      <div class="col">
+        <p>Logg på med Twitter for å fylle inn navn</p>
+      </div>
     </div>
     <div class="row">
       <div class="col col-center">
-        <button class="button button-positive button-block" ng-click="save()">
-          LAGRE
+        <button ng-click="login()" class="button button-positive button-block" ng-show="!settings.loggedIn" >
+          LOGG PÅ
+        </button>
+        <button ng-click="logout()" class="button button-positive button-block" ng-show="settings.loggedIn">
+          LOGG AV
         </button>
       </div>
     </div>

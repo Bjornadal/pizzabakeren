@@ -4,7 +4,7 @@ module.controller('DashCtrl', function ($scope, $localstorage, $state, $ionicPop
   $scope.startOrder = function () {
     var settings = $localstorage.getObject('settings');
     if (!settings.username || !settings.group) {
-      $ionicPopup.alert({title: 'Du må legge inn navn og gruppe før du kan bestille'});
+      $ionicPopup.alert({title: 'Du må logge på og legge inn gruppe før du kan bestille'});
     }
     else {
       $state.go('tab.pizza-select');
@@ -74,12 +74,39 @@ module.controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $localst
   });
 });
 
-module.controller('SettingsCtrl', function ($scope, $localstorage, $ionicPopup) {
+module.controller('SettingsCtrl', function ($scope, $localstorage, ENV) {
+  var ref = new Firebase(ENV.apiEndpoint);
+
   $scope.settings = $localstorage.getObject('settings');
 
-  $scope.save = function () {
+  ref.onAuth(function(authData) {
+    if (authData != null) {
+      $scope.settings.loggedIn = true;
+      $scope.settings.username = authData.twitter.displayName;
+      $localstorage.setObject('settings', $scope.settings);
+    }
+  });
+
+  $scope.logout = function() {
+    ref.unauth();
+    $scope.settings.loggedIn = false;
+    $scope.settings.username = null;
+    $localstorage.setObject('settings', $scope.settings);
+  };
+
+  $scope.login = function() {
+    ref.authWithOAuthPopup("twitter", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        $scope.$apply();
+      }
+    });
+  };
+
+  $scope.changed = function() {
     $scope.settings.group = $scope.settings.group.toLowerCase();
     $localstorage.setObject('settings', $scope.settings);
-    $ionicPopup.alert({title: 'Innstillinger ble lagret'});
-  }
+  };
 });
