@@ -1,5 +1,11 @@
 var module = angular.module('starter.controllers', []);
 
+
+module.controller('AppCtrl', function ($scope, $localstorage, $state) {
+  $scope.settings = $localstorage.getObject('settings');
+});
+
+
 module.controller('DashCtrl', function ($scope, $localstorage, $state, $ionicPopup) {
   $scope.startOrder = function () {
     var settings = $localstorage.getObject('settings');
@@ -7,7 +13,7 @@ module.controller('DashCtrl', function ($scope, $localstorage, $state, $ionicPop
       $ionicPopup.alert({title: 'Du må logge på og legge inn gruppe før du kan bestille'});
     }
     else {
-      $state.go('tab.pizza-select');
+      $state.go('app.pizza-select');
     }
   };
 });
@@ -19,7 +25,7 @@ module.controller('PizzaSelectCtrl', function ($scope, $firebaseArray, ENV, $loc
     OrderFactory.pizzaName = pizza.name;
     OrderFactory.pizzaNr = pizza.nr;
     OrderFactory.price = pizza.price;
-    $state.go('tab.soda-select');
+    $state.go('app.soda-select');
   }
 });
 
@@ -28,7 +34,7 @@ module.controller('SodaSelectCtrl', function ($scope, $firebaseArray, ENV, $stat
   $scope.sodaList = $firebaseArray(ref);
   $scope.selectSoda = function (soda) {
     OrderFactory.soda = soda.name;
-    $state.go('tab.confirmation');
+    $state.go('app.confirmation');
   }
 });
 
@@ -56,7 +62,7 @@ module.controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV
     $scope.saveOrder = function () {
       $scope.order.datetime = (new Date).toJSON();
       orders.$add($scope.order);
-      $state.go('tab.dash');
+      $state.go('app.dash');
       $ionicPopup.alert({title: 'Bestillingen ble sendt!'});
     }
   });
@@ -83,6 +89,7 @@ module.controller('SettingsCtrl', function ($scope, $localstorage, ENV) {
     if (authData != null) {
       $scope.settings.loggedIn = true;
       $scope.settings.username = authData.twitter.displayName;
+      $scope.settings.profileImageURL = authData.twitter.profileImageURL.replace("_normal", "");
       $localstorage.setObject('settings', $scope.settings);
     }
   });
@@ -91,6 +98,7 @@ module.controller('SettingsCtrl', function ($scope, $localstorage, ENV) {
     ref.unauth();
     $scope.settings.loggedIn = false;
     $scope.settings.username = null;
+    $scope.settings.profileImageURL = null;
     $localstorage.setObject('settings', $scope.settings);
   };
 

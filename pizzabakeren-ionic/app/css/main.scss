@@ -2,6 +2,11 @@
 @import "variables";
 @import "../bower_components/ionic/scss/ionic";
 @import "custom";
+@font-face {font-family: "Chocolate Cooky"; src: url('../fonts/chocolate_cooky.ttf');}
+
+body, h1, h2, h3, h4, h5, h6, button, input {
+  font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
 
 .nowrap {
   white-space: normal !important;
@@ -14,4 +19,39 @@
 
 .summary h3 {
   color: white;
+}
+
+.profileImage {
+  border-radius: 50%;
+  border: 5px solid #111111;
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
+
+/*
+  Left menu
+*/
+
+.coolDark {
+  background-color: $coolDark;
+  color: white;
+}
+
+.coolDark h5 {
+  color: white;
+}
+
+.coolDark .item-content {
+  background-color: $coolDark;
+  color: white;
+}
+
+.coolDark .item {
+  border: 1px solid #111111;
+  font-size: 13px;
+}
+
+.coolDark .item-icon-left .icon {
+  opacity: 0.1;
 }

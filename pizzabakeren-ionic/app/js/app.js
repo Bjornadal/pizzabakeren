@@ -18,7 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
-        StatusBar.styleLightContent();
+        StatusBar.styleDefault();
       }
     });
   })
@@ -32,65 +32,66 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $stateProvider
 
     // setup an abstract state for the tabs directive
-      .state('tab', {
-        url: '/tab',
+      .state('app', {
+        url: '/app',
         abstract: true,
-        templateUrl: 'templates/tabs/tabs.html'
+        templateUrl: 'templates/menu/menu.html',
+        controller: 'AppCtrl'
       })
 
       // Each tab has its own nav history stack:
 
-      .state('tab.dash', {
+      .state('app.dash', {
         url: '/dash',
         views: {
-          'tab-dash': {
+          'menuContent': {
             templateUrl: 'templates/tabs/tab-dash.html',
             controller: 'DashCtrl'
           }
         }
       })
-      .state('tab.pizza-select', {
+      .state('app.pizza-select', {
         url: '/dash/pizza',
         views: {
-          'tab-dash': {
+          'menuContent': {
             templateUrl: 'templates/order/pizza-select.html',
             controller: 'PizzaSelectCtrl'
           }
         }
       })
-      .state('tab.soda-select', {
+      .state('app.soda-select', {
         url: '/dash/pizza/soda',
         views: {
-          'tab-dash': {
+          'menuContent': {
             templateUrl: 'templates/order/soda-select.html',
             controller: 'SodaSelectCtrl'
           }
         }
       })
-      .state('tab.confirmation', {
+      .state('app.confirmation', {
         url: '/dash/pizza/soda/confirm',
         views: {
-          'tab-dash': {
+          'menuContent': {
             templateUrl: 'templates/order/confirmation.html',
             controller: 'OrderConfirmationCtrl'
           }
         }
       })
 
-      .state('tab.history', {
+      .state('app.history', {
         url: '/history',
         views: {
-          'tab-history': {
+          'menuContent': {
             templateUrl: 'templates/tabs/tab-history.html',
             controller: 'HistoryCtrl'
           }
         }
       })
 
-      .state('tab.settings', {
+      .state('app.settings', {
         url: '/settings',
         views: {
-          'tab-settings': {
+          'menuContent': {
             templateUrl: 'templates/tabs/tab-settings.html',
             controller: 'SettingsCtrl'
           }
@@ -98,6 +99,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/app/dash');
 
   });
