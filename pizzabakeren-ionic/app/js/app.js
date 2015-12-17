@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'config', 'ngCordova', 'starter.filters', 'angular.filter'])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $updateService) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -20,6 +20,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      $updateService.isUpdateAvailable().then(function(install) {
+        if (install) {
+          $updateService.installUpdate();
+        }
+      });
     });
   })
 
@@ -45,7 +51,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/dash',
         views: {
           'menuContent': {
-            templateUrl: 'templates/tabs/tab-dash.html',
+            templateUrl: 'templates/order/main-order.html',
             controller: 'DashCtrl'
           }
         }
@@ -82,7 +88,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/history',
         views: {
           'menuContent': {
-            templateUrl: 'templates/tabs/tab-history.html',
+            templateUrl: 'templates/history/main-history.html',
             controller: 'HistoryCtrl'
           }
         }
@@ -92,7 +98,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/settings',
         views: {
           'menuContent': {
-            templateUrl: 'templates/tabs/tab-settings.html',
+            templateUrl: 'templates/settings/main-settings.html',
             controller: 'SettingsCtrl'
           }
         }

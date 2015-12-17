@@ -54,7 +54,9 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "org.apache.cordova.file-transfer",
+    "cordova-plugin-app-version"
   ],
   "cordovaPlatforms": []
 }

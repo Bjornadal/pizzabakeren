@@ -1,10 +1,38 @@
 var module = angular.module('starter.controllers', []);
 
 
-module.controller('AppCtrl', function ($scope, $localstorage, $state) {
+module.controller('AppCtrl', function ($scope, $localstorage, ENV) {
   $scope.settings = $localstorage.getObject('settings');
-});
 
+  var ref = new Firebase(ENV.apiEndpoint);
+  ref.onAuth(function(authData) {
+    if (authData != null) {
+      $scope.settings.loggedIn = true;
+      $scope.settings.username = authData.twitter.displayName;
+      $scope.settings.profileImageURL = authData.twitter.profileImageURL.replace("_normal", "");
+      $localstorage.setObject('settings', $scope.settings);
+    }
+  });
+
+  $scope.logout = function() {
+    ref.unauth();
+    $scope.settings.loggedIn = false;
+    $scope.settings.username = null;
+    $scope.settings.profileImageURL = null;
+    $localstorage.setObject('settings', $scope.settings);
+  };
+
+  $scope.login = function() {
+    ref.authWithOAuthPopup("twitter", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        $scope.$apply();
+      }
+    });
+  };
+});
 
 module.controller('DashCtrl', function ($scope, $localstorage, $state, $ionicPopup) {
   $scope.startOrder = function () {
@@ -38,32 +66,37 @@ module.controller('SodaSelectCtrl', function ($scope, $firebaseArray, ENV, $stat
   }
 });
 
-module.controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV, $state, OrderFactory, $localstorage, $ionicPopup) {
+module.controller('OrderConfirmationCtrl', function ($scope, $firebaseArray, ENV, $state, OrderFactory, $localstorage, $ionicPopup, $ionicHistory) {
   $scope.$on('$ionicView.enter', function (e) {
     var settings = $localstorage.getObject('settings');
     var ref = new Firebase(ENV.apiEndpoint + "/orders/" + settings.group + "/" + moment().format("YYYY-MM-DD"));
     var orders = $firebaseArray(ref);
 
-    $scope.buttonDisabled = true;
+    $scope.hasAccess = true;
     $scope.order = OrderFactory;
     $scope.order.user = settings.username;
     $scope.order.group = settings.group;
 
     orders.$loaded(function () {
-      var disabled = false;
+      var access = true;
       angular.forEach(orders, function (order) {
         if (settings.username == order.user) {
-          disabled = true;
+          access = false;
         }
       });
-      $scope.buttonDisabled = disabled;
+      $scope.hasAccess = access;
     });
 
     $scope.saveOrder = function () {
       $scope.order.datetime = (new Date).toJSON();
       orders.$add($scope.order);
-      $state.go('app.dash');
+      $state.go('app.history');
       $ionicPopup.alert({title: 'Bestillingen ble sendt!'});
+
+      $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+        historyRoot: true
+      });
     }
   });
 });
@@ -81,37 +114,8 @@ module.controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $localst
 });
 
 module.controller('SettingsCtrl', function ($scope, $localstorage, ENV) {
-  var ref = new Firebase(ENV.apiEndpoint);
 
   $scope.settings = $localstorage.getObject('settings');
-
-  ref.onAuth(function(authData) {
-    if (authData != null) {
-      $scope.settings.loggedIn = true;
-      $scope.settings.username = authData.twitter.displayName;
-      $scope.settings.profileImageURL = authData.twitter.profileImageURL.replace("_normal", "");
-      $localstorage.setObject('settings', $scope.settings);
-    }
-  });
-
-  $scope.logout = function() {
-    ref.unauth();
-    $scope.settings.loggedIn = false;
-    $scope.settings.username = null;
-    $scope.settings.profileImageURL = null;
-    $localstorage.setObject('settings', $scope.settings);
-  };
-
-  $scope.login = function() {
-    ref.authWithOAuthPopup("twitter", function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-        $scope.$apply();
-      }
-    });
-  };
 
   $scope.changed = function() {
     $scope.settings.group = $scope.settings.group.toLowerCase();

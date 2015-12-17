@@ -28,6 +28,12 @@
         <ion-item nav-clear menu-close href="#/app/settings" class="item-icon-left">
           <i class="icon ion-gear-a"></i>Innstillinger
         </ion-item>
+        <ion-item nav-clear menu-close ng-click="login()" class="item-icon-left" ng-show="!settings.loggedIn">
+          <i class="icon ion-log-in"></i>Logg på
+        </ion-item>
+        <ion-item nav-clear menu-close ng-click="logout()" class="item-icon-left" ng-show="settings.loggedIn">
+          <i class="icon ion-log-out"></i>Logg av
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

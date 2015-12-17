@@ -60,3 +60,101 @@ module.service('CalculateService', function () {
     return summary;
   }
 });
+
+module.service('$updateService', function($cordovaFileTransfer, $cordovaFileOpener2, $firebaseObject, ENV, $utilsService, $ionicPopup, $q) {
+  this.isUpdateAvailable = function() {
+    var deferred = $q.defer()
+    var ref = new Firebase(ENV.apiEndpoint + "/app");
+    var app = $firebaseObject(ref);
+
+    app.$loaded(function () {
+      cordova.getAppVersion.getVersionNumber(function (version) {
+        // If update is available
+        if ($utilsService.compareVersions(app.version, version) >= 1) {
+          var confirmPopup = $ionicPopup.confirm({title: 'En oppdatering er tilgjengelig. Trykk "OK" for oppdatere.'});
+          confirmPopup.then(function(res) {
+            if(res) {
+              deferred.resolve(true);
+            } else {
+              deferred.resolve(false);
+            }
+          });
+        }
+      });
+    });
+
+    return deferred.promise;
+  };
+
+  this.installUpdate = function() {
+    var url = ENV.updateEndpoint + "pizzabakeren.apk";
+    var targetPath = cordova.file.externalRootDirectory + "/Download/pizzabakeren.apk";
+    var trustHosts = true
+    var options = {};
+
+    $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+      .then(function(result) {
+        $cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive')
+          .then(function() {
+            // Success!
+          }, function(err) {
+            // An error occurred. Show a message to the user
+          });
+      }, function(err) {
+        // Error
+      }, function (progress) {
+        $timeout(function () {
+          console.log("Progress: " + (progress.loaded / progress.total) * 100);
+        })
+      });
+  };
+});
+
+module.service('$utilsService', function() {
+  this.compareVersions = function(v1, v2, options) {
+    var lexicographical = options && options.lexicographical,
+      zeroExtend = options && options.zeroExtend,
+      v1parts = v1.split('.'),
+      v2parts = v2.split('.');
+
+    function isValidPart(x) {
+      return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
+    }
+
+    if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
+      return NaN;
+    }
+
+    if (zeroExtend) {
+      while (v1parts.length < v2parts.length) v1parts.push("0");
+      while (v2parts.length < v1parts.length) v2parts.push("0");
+    }
+
+    if (!lexicographical) {
+      v1parts = v1parts.map(Number);
+      v2parts = v2parts.map(Number);
+    }
+
+    for (var i = 0; i < v1parts.length; ++i) {
+      if (v2parts.length == i) {
+        return 1;
+      }
+
+      if (v1parts[i] == v2parts[i]) {
+        continue;
+      }
+      else if (v1parts[i] > v2parts[i]) {
+        return 1;
+      }
+      else {
+        return -1;
+      }
+    }
+
+    if (v1parts.length != v2parts.length) {
+      return -1;
+    }
+
+    return 0;
+  }
+});
