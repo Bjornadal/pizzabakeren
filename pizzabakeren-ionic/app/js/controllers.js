@@ -2,42 +2,45 @@ var module = angular.module('starter.controllers', []);
 
 
 module.controller('AppCtrl', function ($scope, $localstorage, ENV) {
-  $scope.settings = $localstorage.getObject('settings');
+  $scope.$on('$ionicView.enter', function (e) {
 
-  var ref = new Firebase(ENV.apiEndpoint);
-  ref.onAuth(function(authData) {
-    if (authData != null) {
-      $scope.settings.loggedIn = true;
-      $scope.settings.username = authData.twitter.displayName;
-      $scope.settings.profileImageURL = authData.twitter.profileImageURL.replace("_normal", "");
-      $localstorage.setObject('settings', $scope.settings);
-    }
-  });
+    $scope.settings = $localstorage.getObject('settings');
 
-  $scope.logout = function() {
-    ref.unauth();
-    $scope.settings.loggedIn = false;
-    $scope.settings.username = null;
-    $scope.settings.profileImageURL = null;
-    $localstorage.setObject('settings', $scope.settings);
-  };
-
-  $scope.login = function() {
-    ref.authWithOAuthPopup("twitter", function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-        $scope.$apply();
+    var ref = new Firebase(ENV.apiEndpoint);
+    ref.onAuth(function (authData) {
+      if (authData != null) {
+        $scope.settings.loggedIn = true;
+        $scope.settings.username = authData.twitter.displayName;
+        $scope.settings.profileImageURL = authData.twitter.profileImageURL.replace("_normal", "");
+        $localstorage.setObject('settings', $scope.settings);
       }
     });
-  };
+
+    $scope.logout = function () {
+      ref.unauth();
+      $scope.settings.loggedIn = false;
+      $scope.settings.username = '';
+      $scope.settings.profileImageURL = 'img/profile-img.jpg';
+      $localstorage.setObject('settings', $scope.settings);
+    };
+
+    $scope.login = function () {
+      ref.authWithOAuthPopup("twitter", function (error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+          $scope.$apply();
+        }
+      });
+    };
+  });
 });
 
 module.controller('DashCtrl', function ($scope, $localstorage, $state, $ionicPopup) {
   $scope.startOrder = function () {
     var settings = $localstorage.getObject('settings');
-    if (!settings.username || !settings.group) {
+    if (!settings.loggedIn || !settings.group) {
       $ionicPopup.alert({title: 'Du må logge på og legge inn gruppe før du kan bestille'});
     }
     else {
@@ -113,7 +116,7 @@ module.controller('HistoryCtrl', function ($scope, $firebaseArray, ENV, $localst
   });
 });
 
-module.controller('SettingsCtrl', function ($scope, $localstorage, ENV) {
+module.controller('SettingsCtrl', function ($scope, $localstorage) {
 
   $scope.settings = $localstorage.getObject('settings');
 

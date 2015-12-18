@@ -14,8 +14,9 @@
     <ion-content class="has-header coolDark">
       <div class="row text-center">
         <div class="col col-center">
-          <img class="profileImage" ng-src="{{settings.profileImageURL}}">
+          <img class="profileImage" ng-src="{{settings.profileImageURL}}" src="img/profile-img.jpg">
           <h5>{{settings.username}}</h5>
+          <h6 class="positive">{{settings.group | capitalize}}</h6>
         </div>
       </div>
       <ion-list>

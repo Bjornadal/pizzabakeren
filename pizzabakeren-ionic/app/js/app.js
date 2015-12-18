@@ -11,21 +11,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
+      if (window.cordova) {
+        if (window.cordova.plugins && window.cordova.plugins.Keyboard) {
+          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+          cordova.plugins.Keyboard.disableScroll(true);
+        }
 
+        $updateService.isUpdateAvailable().then(function(install) {
+          if (install) {
+            $updateService.installUpdate();
+          }
+        });
       }
+
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
-
-      $updateService.isUpdateAvailable().then(function(install) {
-        if (install) {
-          $updateService.installUpdate();
-        }
-      });
     });
   })
 
@@ -51,7 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/dash',
         views: {
           'menuContent': {
-            templateUrl: 'templates/order/main-order.html',
+            templateUrl: 'templates/order/dash.html',
             controller: 'DashCtrl'
           }
         }
@@ -60,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/dash/pizza',
         views: {
           'menuContent': {
-            templateUrl: 'templates/order/pizza-select.html',
+            templateUrl: 'templates/order/select-pizza.html',
             controller: 'PizzaSelectCtrl'
           }
         }
@@ -69,7 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/dash/pizza/soda',
         views: {
           'menuContent': {
-            templateUrl: 'templates/order/soda-select.html',
+            templateUrl: 'templates/order/select-soda.html',
             controller: 'SodaSelectCtrl'
           }
         }
@@ -88,7 +90,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/history',
         views: {
           'menuContent': {
-            templateUrl: 'templates/history/main-history.html',
+            templateUrl: 'templates/history/history.html',
             controller: 'HistoryCtrl'
           }
         }
@@ -98,7 +100,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/settings',
         views: {
           'menuContent': {
-            templateUrl: 'templates/settings/main-settings.html',
+            templateUrl: 'templates/settings/settings.html',
             controller: 'SettingsCtrl'
           }
         }

@@ -5,19 +5,9 @@
   <ion-content>
     <div class="list">
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Navn</span>
-        <input type="text" placeholder="Ola Nordmann" ng-model="settings.username" ng-disabled="true">
-      </label>
-      <label class="item item-input item-stacked-label">
         <span class="input-label">Gruppe</span>
         <input type="text" placeholder="Pizzagjengen" ng-model="settings.group" ng-blur="changed()">
       </label>
-    </div>
-
-    <div class="row" ng-show="!settings.loggedIn">
-      <div class="col">
-        <p>Logg på med Twitter for å fylle inn navn</p>
-      </div>
     </div>
   </ion-content>
 </ion-view>
