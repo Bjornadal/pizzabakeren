@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase', 'config', 'ngCordova', 'starter.filters', 'angular.filter'])
+angular.module('pizzabakeren', ['ionic', 'firebase', 'config', 'ngCordova', 'angular.filter'])
 
   .run(function ($ionicPlatform, $updateService) {
     $ionicPlatform.ready(function () {
@@ -17,7 +17,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           cordova.plugins.Keyboard.disableScroll(true);
         }
 
-        $updateService.isUpdateAvailable().then(function(install) {
+        $updateService.isUpdateAvailable().then(function (install) {
           if (install) {
             $updateService.installUpdate();
           }
@@ -49,17 +49,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
       // Each tab has its own nav history stack:
 
-      .state('app.dash', {
-        url: '/dash',
+      .state('app.order', {
+        url: '/order',
         views: {
           'menuContent': {
-            templateUrl: 'templates/order/dash.html',
-            controller: 'DashCtrl'
+            templateUrl: 'templates/order/startOrder.html',
+            controller: 'OrderCtrl'
           }
         }
       })
       .state('app.pizza-select', {
-        url: '/dash/pizza',
+        url: '/order/pizza',
         views: {
           'menuContent': {
             templateUrl: 'templates/order/select-pizza.html',
@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       })
       .state('app.soda-select', {
-        url: '/dash/pizza/soda',
+        url: '/order/pizza/soda',
         views: {
           'menuContent': {
             templateUrl: 'templates/order/select-soda.html',
@@ -77,7 +77,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       })
       .state('app.confirmation', {
-        url: '/dash/pizza/soda/confirm',
+        url: '/order/pizza/soda/confirm',
         views: {
           'menuContent': {
             templateUrl: 'templates/order/confirmation.html',
@@ -107,6 +107,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/dash');
+    $urlRouterProvider.otherwise('/app/order');
 
   });
