@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Cola",
+    "thumbnail": "cola.png"
+  },
+  {
+    "name": "Cola Zero",
+    "thumbnail": "zero.png"
+  },
+  {
+    "name": "Fanta",
+    "thumbnail": "fanta.png"
+  },
+  {
+    "name": "Fanta Exotic",
+    "thumbnail": "exotic.png"
+  },
+  {
+    "name": "Urge",
+    "thumbnail": "urge.png"
+  },
+  {
+    "name": "Sprite",
+    "thumbnail": "sprite.png"
+  },
+  {
+    "name": "Bonaqua",
+    "thumbnail": "bonaqua.png"
+  }
+]

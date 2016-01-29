@@ -56,7 +56,10 @@
     "com.ionic.keyboard",
     "cordova-plugin-inappbrowser",
     "org.apache.cordova.file-transfer",
-    "cordova-plugin-app-version"
+    "cordova-plugin-app-version",
+    "cordova-plugin-geolocation",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-background-mode"
   ],
   "cordovaPlatforms": []
 }

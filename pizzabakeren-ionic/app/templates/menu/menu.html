@@ -1,41 +1,45 @@
 <ion-side-menus>
 
-  <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-energized">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
+    <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-energized">
+            <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-pane>
 
-  <ion-side-menu side="left">
-    <header class="bar bar-header coolDark">
+    <ion-side-menu side="left">
+        <header class="bar bar-header coolDark">
 
-    </header>
-    <ion-content class="has-header coolDark">
-      <div class="row text-center">
-        <div class="col col-center">
-          <img class="profileImage" ng-src="{{settings.profileImageURL}}" src="img/profile-img.jpg">
-          <h5>{{settings.username}}</h5>
-          <h6 class="positive">{{settings.group | capitalize}}</h6>
-        </div>
-      </div>
-      <ion-list>
-        <ion-item nav-clear menu-close href="#/app/dash" class="item-icon-left">
-          <i class="icon ion-pizza"></i>Bestill
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/history" class="item-icon-left">
-          <i class="icon ion-clipboard"></i>Dagens bestilling
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/settings" class="item-icon-left">
-          <i class="icon ion-gear-a"></i>Innstillinger
-        </ion-item>
-        <ion-item nav-clear menu-close ng-click="login()" class="item-icon-left" ng-show="!settings.loggedIn">
-          <i class="icon ion-log-in"></i>Logg på
-        </ion-item>
-        <ion-item nav-clear menu-close ng-click="logout()" class="item-icon-left" ng-show="settings.loggedIn">
-          <i class="icon ion-log-out"></i>Logg av
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
+        </header>
+        <ion-content class="has-header coolDark">
+            <div class="row text-center">
+                <div class="col col-center">
+                    <img class="profileImage" ng-src="{{settings.profileImageURL}}" src="img/profile-img.jpg">
+                    <h5>{{settings.username}}</h5>
+                    <h6 class="positive">{{settings.group | capitalize}}</h6>
+                </div>
+            </div>
+            <ion-list>
+                <ion-item nav-clear menu-close href="#/app/order" class="item-icon-left">
+                    <i class="icon ion-pizza"></i>Bestill
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/history" class="item-icon-left">
+                    <i class="icon ion-clipboard"></i>Dagens bestilling
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/track" class="item-icon-left">
+                    <i class="icon ion-map"></i>Sporing (beta)
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/settings" class="item-icon-left">
+                    <i class="icon ion-gear-a"></i>Innstillinger
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="login()" class="item-icon-left" ng-show="!settings.loggedIn">
+                    <i class="icon ion-log-in"></i>Logg på
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="logout()" class="item-icon-left" ng-show="settings.loggedIn">
+                    <i class="icon ion-log-out"></i>Logg av
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+
 </ion-side-menus>

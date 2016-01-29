@@ -104,7 +104,17 @@ angular.module('pizzabakeren', ['ionic', 'firebase', 'config', 'ngCordova', 'ang
             controller: 'SettingsCtrl'
           }
         }
-      });
+      })
+
+    .state('app.track', {
+      url: '/track',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/track/track.html',
+          controller: 'TrackCtrl'
+        }
+      }
+    });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/order');

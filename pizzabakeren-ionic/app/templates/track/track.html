@@ -1,0 +1,20 @@
+<ion-view view-title="Sporing">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="row">
+            <div class="col">
+                <button ng-show="!track.live" ng-click="startTracking()" class="button button-positive button-block">START SPORING</button>
+                <button ng-disabled="localUser != track.user" ng-show="track.live" ng-click="stopTracking()" class="button button-assertive button-block">STOP SPORING</button>
+
+                <p>Lat: {{track.lat}} Lon: {{track.long}}</p>
+
+                <div>
+
+                </div>
+            </div>
+        </div>
+        <div id="map" data-tap-disabled="true"></div>
+    </ion-content>
+</ion-view>
