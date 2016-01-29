@@ -43,8 +43,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'https://pizzabakeren.firebaseio.com/',
-            updateEndpoint: 'http://bjornadal.no/public/'
+            apiEndpoint: 'https://example.firebaseio.com/',
+            updateEndpoint: 'http://example.no/public/'
           }
         }
       },
@@ -52,8 +52,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'https://pizzabakeren.firebaseio.com/',
-            updateEndpoint: 'http://bjornadal.no/public/'
+            apiEndpoint: 'https://example.firebaseio.com/',
+            updateEndpoint: 'http://example.no/public/'
           }
         }
       }
