@@ -37,13 +37,14 @@ module.exports = function (grunt) {
         space: '  ',
         wrap: '"use strict";\n\n {%= __ngModule %}',
         name: 'config',
-        dest: '<%= yeoman.app %>/<%= yeoman.scripts %>/configuration.js'
+        dest: '<%= yeoman.app %>/<%= yeoman.scripts %>/config/configuration.js'
       },
       development: {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://dev.yoursite.com:10000/'
+            apiEndpoint: 'https://pizzabakeren.firebaseio.com/',
+            updateEndpoint: 'http://bjornadal.no/public/'
           }
         }
       },
@@ -51,7 +52,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://api.yoursite.com/'
+            apiEndpoint: 'https://pizzabakeren.firebaseio.com/',
+            updateEndpoint: 'http://bjornadal.no/public/'
           }
         }
       }
