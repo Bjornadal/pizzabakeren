@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordovaGeolocation, $firebaseObject, ENV, $localstorage, $ionicPopup, $interval) {
+angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordovaGeolocation, $firebaseObject, ENV, $localstorage) {
     var settings = $localstorage.getObject('settings');
     var ref = new Firebase(ENV.apiEndpoint + "/track/" + settings.group);
     var syncTrack = $firebaseObject(ref);
@@ -18,6 +18,7 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         $scope.map = map;
     }
+
     intitializeMap();
 
     var marker;
@@ -30,7 +31,7 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
             title: 'Pizza'
         });
 
-        $scope.$watch('track.lat', function() {
+        $scope.$watch('track.lat', function () {
             var pos = new google.maps.LatLng($scope.track.lat, $scope.track.long);
             $scope.map.setCenter(pos);
             marker.setPosition(pos);
@@ -38,7 +39,7 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
     });
 
     var watch;
-    $scope.stopTracking = function() {
+    $scope.stopTracking = function () {
         $scope.track.live = false;
         $scope.track.user = '';
 
@@ -56,8 +57,8 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
         // Run tracking in background
         document.addEventListener('deviceready', function () {
             cordova.plugins.backgroundMode.setDefaults({
-                title:  'Pizzabakeren',
-                text:   'GPS sporing aktivert.'
+                title: 'Pizzabakeren',
+                text: 'GPS sporing aktivert.'
             });
             cordova.plugins.backgroundMode.enable();
 
@@ -70,7 +71,7 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
 
     };
 
-    $scope.startGps = function() {
+    $scope.startGps = function () {
         if (!angular.isDefined(watch)) {
             var watchOptions = {
                 timeout: 20000,
@@ -82,12 +83,7 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
             watch.then(
                 null,
                 function (err) {
-                    console.log("Geo error:");
-                    var output = '';
-                    for (var property in err) {
-                        output += property + ': ' + err[property]+'; ';
-                    }
-                    console.log(output);
+                    console.error(err);
                 },
                 function (position) {
                     $scope.track.lat = position.coords.latitude;
