@@ -5,12 +5,14 @@
     <ion-content>
         <div class="row">
             <div class="col">
-                <button ng-show="!track.live" ng-click="startTracking()" class="button button-positive button-block">START SPORING</button>
+                <button ng-show="!track.live" ng-click="startTracking()" class="button button-balanced button-block">START SPORING</button>
                 <button ng-disabled="localUser != track.user" ng-show="track.live" ng-click="stopTracking()"
                         class="button button-assertive button-block">STOP SPORING
                 </button>
 
-                <p>Lat: {{track.lat}} Lon: {{track.long}}</p>
+                <div ng-show="track.live">
+                    <h5>Sporing live: {{track.user}}</h5>
+                </div>
             </div>
         </div>
         <div id="map" data-tap-disabled="true"></div>
