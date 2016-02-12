@@ -74,8 +74,9 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
     $scope.startGps = function () {
         if (!angular.isDefined(watch)) {
             var watchOptions = {
-                timeout: 20000,
-                enableHighAccuracy: false
+                maximumAge: 5000,
+                timeout: 60000,
+                enableHighAccuracy: true
             };
 
             watch = $cordovaGeolocation.watchPosition(watchOptions);

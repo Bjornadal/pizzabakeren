@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="no.bjornadal.pizzabakeren" version="2.5.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="no.bjornadal.pizzabakeren" version="2.5.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Pizzabakeren</name>
   <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -31,5 +31,5 @@
   <preference name="android-minSdkVersion" value="19"/>
   <preference name="android-targetSdkVersion" value="21"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="1000"/>
 </widget>
