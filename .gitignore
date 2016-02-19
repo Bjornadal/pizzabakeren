@@ -9,5 +9,6 @@ coverage
 *.log
 *.DS_Store
 gen
+ionic.project
 
 app/js/configuration.js
