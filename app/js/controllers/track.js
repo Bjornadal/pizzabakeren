@@ -3,7 +3,7 @@
 angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordovaGeolocation, $firebaseObject, ENV, $localstorage, $interval, $cordovaBackgroundGeolocation) {
     var watch;
     var marker;
-    var bgLocationServices = window.plugins.backgroundLocationServices;
+    var bgLocationServices = (window.plugins) ? window.plugins.backgroundLocationServices : null;
     var settings = $localstorage.getObject('settings');
     var ref = new Firebase(ENV.apiEndpoint + "/track/" + settings.group);
     var syncTrack = $firebaseObject(ref);
@@ -33,7 +33,7 @@ angular.module('pizzabakeren').controller('TrackCtrl', function ($scope, $cordov
             title: 'Pizza'
         });
 
-        $scope.$watch('track.lat', function () {
+        $scope.$watch('track.position.latitude', function () {
             var pos = new google.maps.LatLng($scope.track.position.latitude, $scope.track.position.longitude);
             $scope.map.setCenter(pos);
             marker.setPosition(pos);
